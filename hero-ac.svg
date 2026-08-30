@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" fill="none" role="img" aria-label="Nástenná klimatizačná jednotka Montex s jemným prúdením chladného vzduchu">
+  <rect x="0" y="0" width="560" height="460" rx="24" fill="#F6F7F9"/>
+  <circle cx="300" cy="230" r="200" fill="#EEF0F3"/>
+
+  <!-- breeze waves -->
+  <path d="M120 190c50 24 90 24 140 0s90-24 140 0 90 24 140 0" stroke="#CBD0D8" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <path d="M110 232c50 26 90 26 140 0s90-26 140 0 90 26 140 0" stroke="#2C5480" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
+  <path d="M130 274c46 22 84 22 128 0s84-22 128 0 84 22 128 0" stroke="#CBD0D8" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- accent dots -->
+  <circle cx="168" cy="312" r="7" fill="#F5821F"/>
+  <circle cx="404" cy="300" r="5" fill="#F5821F" opacity="0.7"/>
+
+  <!-- AC unit -->
+  <rect x="150" y="96" width="260" height="86" rx="18" fill="#0A1830"/>
+  <rect x="172" y="130" width="216" height="8" rx="4" fill="#2C5480" opacity="0.9"/>
+  <rect x="172" y="146" width="216" height="8" rx="4" fill="#2C5480" opacity="0.6"/>
+  <rect x="172" y="162" width="140" height="8" rx="4" fill="#2C5480" opacity="0.4"/>
+  <circle cx="382" cy="112" r="6" fill="#F5821F"/>
+
+  <!-- mount shadow -->
+  <rect x="150" y="182" width="260" height="10" rx="5" fill="#060E1C" opacity="0.1"/>
+</svg>
