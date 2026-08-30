@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { Suspense } from "react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -8,6 +10,12 @@ import { ProductCard } from "@/components/product-card";
 import { site } from "@/lib/site";
 import { categories, getProductsByCategory } from "@/lib/products-data";
 import { basePath } from "@/lib/base-path";
+
+// Drop a real photo at public/hero.(jpg|jpeg|png) and it's used automatically —
+// falls back to the placeholder illustration until then.
+const heroImage =
+  ["hero.jpg", "hero.jpeg", "hero.png"].find((name) => existsSync(join(process.cwd(), "public", name))) ??
+  "hero-ac.svg";
 
 const heroPills = ["Klimatizácia pre byt a dom", "Bezprievanový komfort", "Riešenie pre firmy"];
 
@@ -18,7 +26,7 @@ const trustBadges = [
   { title: "Záruka na montáž", text: "Servis aj po realizácii" },
 ];
 
-const process = [
+const processSteps = [
   { num: "01", title: "Telefonická konzultácia", text: "Zistíme váš priestor a potreby už pri prvom telefonáte." },
   { num: "02", title: "Obhliadka a ponuka", text: "Pripravíme jasnú cenovú ponuku vopred, bez skrytých poplatkov." },
   { num: "03", title: "Montáž na kľúč", text: "Inštaláciu zrealizujeme v dohodnutom termíne, čisto a bez zbytočných zásahov." },
@@ -79,33 +87,35 @@ export default function HomePage() {
             </aside>
 
             <div className="relative overflow-hidden rounded-2xl border border-line bg-white">
-              <div className="absolute left-6 top-6 z-10 max-w-sm rounded-xl bg-white/95 p-5 shadow-lg sm:left-8 sm:top-8">
-                <div className="inline-flex items-center rounded-md bg-orange-100 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide text-orange-700">
-                  Certifikovaná montáž
+              <div className="relative aspect-[4/3] w-full sm:aspect-[16/11]">
+                <Image
+                  src={`${basePath}/${heroImage}`}
+                  alt="Klimatizácia Montex nainštalovaná v modernom obývacom priestore"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 700px"
+                  className="object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/0 to-navy-950/0" />
+
+                <div className="absolute left-4 top-4 max-w-[230px] rounded-lg bg-white/95 px-3.5 py-3 shadow-md sm:left-5 sm:top-5">
+                  <div className="inline-flex items-center rounded-md bg-orange-100 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-orange-700">
+                    Certifikovaná montáž
+                  </div>
+                  <h1 className="mt-2 text-lg font-bold leading-snug text-navy-950 sm:text-xl">
+                    Klimatizácia s montážou pre byt aj dom
+                  </h1>
                 </div>
-                <h1 className="mt-3 text-2xl font-bold text-navy-950 sm:text-3xl">
-                  Klimatizácia s montážou pre byt aj dom
-                </h1>
-                <p className="mt-2 text-sm text-ink-soft">
-                  Jasná cena vopred, vždy vrátane inštalácie. Pôsobíme v Košiciach a okolí do 50 km.
-                </p>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <Button href="/produkty" variant="primary" className="px-5 py-2.5 text-sm">
+
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 sm:bottom-5 sm:left-5">
+                  <Button href="/produkty" variant="primary" className="px-4 py-2.5 text-sm shadow-md">
                     Pozrieť produkty
                   </Button>
-                  <Button href="/kontakt" variant="ghost" className="px-5 py-2.5 text-sm">
+                  <Button href="/kontakt" variant="ghost" className="bg-white/95 px-4 py-2.5 text-sm shadow-md">
                     Nezáväzná ponuka
                   </Button>
                 </div>
               </div>
-              <Image
-                src={`${basePath}/hero-ac.svg`}
-                alt="Nástenná klimatizačná jednotka Montex"
-                width={560}
-                height={460}
-                priority
-                className="ml-auto w-full max-w-[560px]"
-              />
               <div className="flex flex-wrap gap-2 border-t border-line p-4">
                 {heroPills.map((pill) => (
                   <span key={pill} className="rounded-full bg-gray-50 px-3.5 py-1.5 text-xs font-medium text-ink-soft">
@@ -198,7 +208,7 @@ export default function HomePage() {
         <Container>
           <SectionHead eyebrow="Ako pracujeme" title="Od telefonátu po chladný vzduch — v štyroch krokoch" />
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((step) => (
+            {processSteps.map((step) => (
               <div key={step.num}>
                 <div className="font-display text-3xl font-bold text-orange-500">{step.num}</div>
                 <h4 className="mt-3 text-lg font-bold text-navy-950">{step.title}</h4>
