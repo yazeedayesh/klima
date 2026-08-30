@@ -129,3 +129,9 @@ export function getCategoryBySlug(slug: string) {
 export function getProductsByCategory(slug: string) {
   return products.filter((p) => p.category === slug);
 }
+
+export function getCategoryPriceRange(slug: string) {
+  const prices = getProductsByCategory(slug).map((p) => p.priceFrom);
+  if (prices.length === 0) return null;
+  return { min: Math.min(...prices), max: Math.max(...prices) };
+}
