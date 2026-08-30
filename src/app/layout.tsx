@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsappFloat } from "@/components/whatsapp-float";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -70,9 +70,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="sk"
       data-scroll-behavior="smooth"
-      className={`${fraunces.variable} ${manrope.variable}`}
+      className={`${jakarta.variable} ${inter.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-cream text-ink antialiased">
+      <body className="flex min-h-screen flex-col bg-white text-ink antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

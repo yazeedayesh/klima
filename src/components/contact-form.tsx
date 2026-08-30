@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { site } from "@/lib/site";
 
@@ -12,29 +13,40 @@ const services = [
 ];
 
 export function ContactForm() {
+  const searchParams = useSearchParams();
+  const prefillProduct = searchParams.get("produkt") ?? "";
   const [service, setService] = useState(services[0]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const name = form.get("name");
-    const phone = form.get("phone");
-    const message = form.get("message");
+    const name = String(form.get("name") ?? "");
+    const phone = String(form.get("phone") ?? "");
+    const message = String(form.get("message") ?? "");
+    const product = String(form.get("product") ?? "");
 
-    const text = [
-      `Dobrý deň, volám sa ${name}.`,
-      `Mám záujem o: ${service}.`,
-      message ? `Popis: ${message}.` : null,
-      `Telefón: ${phone}.`,
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const subject = product ? `Dopyt – ${product}` : "Dopyt z webu Montex";
+    const bodyLines = [
+      `Meno: ${name}`,
+      `Telefón: ${phone}`,
+      `Požadovaná služba: ${service}`,
+      product ? `Produkt: ${product}` : null,
+      message ? `Správa: ${message}` : null,
+    ].filter(Boolean);
 
-    window.open(`${site.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
+    const mailto = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailto;
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[20px] border border-line bg-paper p-8 shadow-md">
+    <form onSubmit={handleSubmit} className="rounded-2xl border border-line bg-white p-8 shadow-md">
+      {prefillProduct && (
+        <div className="mb-5 rounded-lg bg-orange-100 px-4 py-3 text-sm font-medium text-orange-700">
+          Dopyt na produkt: {prefillProduct}
+        </div>
+      )}
+      <input type="hidden" name="product" value={prefillProduct} />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Meno a priezvisko" htmlFor="c-name">
           <input id="c-name" name="name" type="text" required placeholder="Vaše meno" className={inputClass} />
@@ -72,10 +84,16 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="mt-6 w-full rounded-full bg-terracotta-500 px-6 py-3.5 text-center text-[0.95rem] font-semibold text-white transition-colors hover:bg-terracotta-600"
+        className="mt-6 w-full rounded-lg bg-orange-500 px-6 py-3.5 text-center text-[0.95rem] font-semibold text-white transition-colors hover:bg-orange-600"
       >
-        Odoslať cez WhatsApp
+        Odoslať e-mailom
       </button>
+      <p className="mt-3 text-center text-sm text-ink-faint">
+        alebo napíšte priamo cez{" "}
+        <a href={site.whatsapp} target="_blank" rel="noopener" className="font-medium text-navy-900 underline">
+          WhatsApp
+        </a>
+      </p>
       <p className="mt-4 text-xs text-ink-faint">
         Vaše údaje nezdieľame s žiadnou treťou stranou. Pozrite si{" "}
         <a href="/ochrana-osobnych-udajov" className="underline">
@@ -88,7 +106,7 @@ export function ContactForm() {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-line bg-cream/40 px-4 py-3 text-[0.95rem] text-ink outline-none transition-colors focus:border-petrol-600";
+  "w-full rounded-lg border border-line bg-gray-50 px-4 py-3 text-[0.95rem] text-ink outline-none transition-colors focus:border-navy-600";
 
 function Field({
   label,

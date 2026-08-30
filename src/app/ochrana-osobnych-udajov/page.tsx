@@ -12,15 +12,15 @@ export default function PrivacyPage() {
     <section className="py-20">
       <Container>
         <div className="max-w-2xl">
-          <div className="inline-flex items-center rounded-full bg-petrol-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-petrol-800">
+          <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
             Právne informácie
           </div>
-          <h1 className="mt-5 text-3xl font-semibold text-petrol-950 sm:text-4xl">
+          <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">
             Zásady ochrany osobných údajov
           </h1>
         </div>
 
-        <div className="mt-10 max-w-3xl space-y-6 text-ink-soft [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-petrol-950 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_a]:underline">
+        <div className="mt-10 max-w-3xl space-y-6 text-ink-soft [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-950 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_a]:underline">
           <p className="text-sm text-ink-faint">Posledná aktualizácia: august 2026</p>
 
           <p>

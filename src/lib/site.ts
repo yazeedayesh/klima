@@ -20,10 +20,10 @@ export type NavLink = {
 };
 
 export const mainNav: NavLink[] = [
+  { href: "/produkty", label: "Produkty" },
   { href: "/sluzby", label: "Služby" },
   { href: "/cenik", label: "Cenník" },
   { href: "/oblasti", label: "Pôsobnosť" },
-  { href: "/blog", label: "Blog" },
   { href: "/o-nas", label: "O nás" },
   { href: "/kontakt", label: "Kontakt" },
 ];
