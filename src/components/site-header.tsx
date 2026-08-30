@@ -40,7 +40,7 @@ export function SiteHeader() {
 
       <Container className="flex h-20 items-center gap-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <Image src={`${basePath}/mark.svg`} alt="Montex" width={40} height={40} priority />
+          <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={40} height={40} priority />
           <span className="font-display text-lg font-bold text-navy-950">{site.name}</span>
         </Link>
 

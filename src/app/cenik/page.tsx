@@ -3,7 +3,7 @@ import { ComingSoon } from "@/components/coming-soon";
 
 export const metadata: Metadata = {
   title: "Cenník",
-  description: "Orientačné ceny montáže, predaja a servisu klimatizácií Montex – vždy vrátane inštalácie.",
+  description: "Orientačné ceny montáže, predaja a servisu klimatizácií Klimaro – vždy vrátane inštalácie.",
 };
 
 export default function CenikPage() {

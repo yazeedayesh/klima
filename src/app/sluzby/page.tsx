@@ -3,7 +3,7 @@ import { ComingSoon } from "@/components/coming-soon";
 
 export const metadata: Metadata = {
   title: "Služby",
-  description: "Predaj, montáž, servis klimatizácií a tepelné čerpadlá – kompletné služby Montex.",
+  description: "Predaj, montáž, servis klimatizácií a tepelné čerpadlá – kompletné služby Klimaro.",
 };
 
 export default function SluzbyPage() {

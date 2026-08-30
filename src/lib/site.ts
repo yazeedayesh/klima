@@ -1,10 +1,10 @@
 export const site = {
-  name: "Montex",
+  name: "Klimaro",
   tagline: "Klimatizácie Košice",
-  url: "https://www.montex-klima.sk",
+  url: "https://www.klimaro.sk",
   phone: "+421944267418",
   phoneDisplay: "+421 944 267 418",
-  email: "info@montex-klima.sk",
+  email: "info@klimaro.sk",
   whatsapp: "https://wa.me/421944267418",
   address: {
     locality: "Košice",

@@ -40,8 +40,8 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "montex-comfort-25",
-    name: "Montex Comfort 2,5 kW",
+    slug: "klimaro-comfort-25",
+    name: "Klimaro Comfort 2,5 kW",
     category: "nastenne-klimatizacie",
     kw: "2,5 kW",
     mount: "Nástenná",
@@ -49,8 +49,8 @@ export const products: Product[] = [
     priceFrom: 690,
   },
   {
-    slug: "montex-comfort-35",
-    name: "Montex Comfort 3,5 kW",
+    slug: "klimaro-comfort-35",
+    name: "Klimaro Comfort 3,5 kW",
     category: "nastenne-klimatizacie",
     kw: "3,5 kW",
     mount: "Nástenná",
@@ -58,8 +58,8 @@ export const products: Product[] = [
     priceFrom: 760,
   },
   {
-    slug: "montex-comfort-50",
-    name: "Montex Comfort 5,0 kW",
+    slug: "klimaro-comfort-50",
+    name: "Klimaro Comfort 5,0 kW",
     category: "nastenne-klimatizacie",
     kw: "5,0 kW",
     mount: "Nástenná",
@@ -67,8 +67,8 @@ export const products: Product[] = [
     priceFrom: 890,
   },
   {
-    slug: "montex-silent-25",
-    name: "Montex Silent 2,5 kW",
+    slug: "klimaro-silent-25",
+    name: "Klimaro Silent 2,5 kW",
     category: "bezprievanove-klimatizacie",
     kw: "2,5 kW",
     mount: "Bezprievanová nástenná",
@@ -76,8 +76,8 @@ export const products: Product[] = [
     priceFrom: 820,
   },
   {
-    slug: "montex-silent-35",
-    name: "Montex Silent 3,5 kW",
+    slug: "klimaro-silent-35",
+    name: "Klimaro Silent 3,5 kW",
     category: "bezprievanove-klimatizacie",
     kw: "3,5 kW",
     mount: "Bezprievanová nástenná",
@@ -85,8 +85,8 @@ export const products: Product[] = [
     priceFrom: 890,
   },
   {
-    slug: "montex-studio-25",
-    name: "Montex Studio 2,5 kW",
+    slug: "klimaro-studio-25",
+    name: "Klimaro Studio 2,5 kW",
     category: "dizajnove-klimatizacie",
     kw: "2,5 kW",
     mount: "Nástenná dizajnová",
@@ -94,8 +94,8 @@ export const products: Product[] = [
     priceFrom: 950,
   },
   {
-    slug: "montex-studio-35",
-    name: "Montex Studio 3,5 kW",
+    slug: "klimaro-studio-35",
+    name: "Klimaro Studio 3,5 kW",
     category: "dizajnove-klimatizacie",
     kw: "3,5 kW",
     mount: "Nástenná dizajnová",
@@ -103,8 +103,8 @@ export const products: Product[] = [
     priceFrom: 1050,
   },
   {
-    slug: "montex-heatpump-6",
-    name: "Montex ThermoAir 6 kW",
+    slug: "klimaro-heatpump-6",
+    name: "Klimaro ThermoAir 6 kW",
     category: "tepelne-cerpadla",
     kw: "6 kW",
     mount: "Tepelné čerpadlo vzduch-voda",
@@ -112,8 +112,8 @@ export const products: Product[] = [
     priceFrom: 4200,
   },
   {
-    slug: "montex-heatpump-9",
-    name: "Montex ThermoAir 9 kW",
+    slug: "klimaro-heatpump-9",
+    name: "Klimaro ThermoAir 9 kW",
     category: "tepelne-cerpadla",
     kw: "9 kW",
     mount: "Tepelné čerpadlo vzduch-voda",

@@ -90,7 +90,7 @@ export default function HomePage() {
               <div className="relative aspect-[4/3] w-full sm:aspect-[16/11]">
                 <Image
                   src={`${basePath}/${heroImage}`}
-                  alt="Klimatizácia Montex nainštalovaná v modernom obývacom priestore"
+                  alt="Klimatizácia Klimaro nainštalovaná v modernom obývacom priestore"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 700px"
@@ -225,7 +225,7 @@ export default function HomePage() {
         <Container className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <div>
             <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
-              Prečo Montex
+              Prečo Klimaro
             </div>
             <h2 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">Chladenie, na ktoré sa dá spoľahnúť</h2>
             <ul className="mt-8 space-y-6">

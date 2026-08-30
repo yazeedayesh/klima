@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/container";
 export const metadata: Metadata = {
   title: "Ochrana osobných údajov",
   description:
-    "Zásady ochrany osobných údajov spoločnosti Montex – informácie o spracúvaní osobných údajov v súlade s GDPR, cookies a právach dotknutých osôb.",
+    "Zásady ochrany osobných údajov spoločnosti Klimaro – informácie o spracúvaní osobných údajov v súlade s GDPR, cookies a právach dotknutých osôb.",
 };
 
 export default function PrivacyPage() {
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
           <p className="text-sm text-ink-faint">Posledná aktualizácia: august 2026</p>
 
           <p>
-            Spoločnosť Montex (&bdquo;my&ldquo;, &bdquo;prevádzkovateľ&ldquo;) rešpektuje súkromie návštevníkov a zákazníkov
+            Spoločnosť Klimaro (&bdquo;my&ldquo;, &bdquo;prevádzkovateľ&ldquo;) rešpektuje súkromie návštevníkov a zákazníkov
             tejto webovej stránky. Tieto zásady vysvetľujú, aké osobné údaje spracúvame, na aký účel, na akom právnom
             základe a aké práva máte v súvislosti s ich spracúvaním, v súlade s Nariadením Európskeho parlamentu a
             Rady (EÚ) 2016/679 (GDPR) a zákonom č. 18/2018 Z. z. o ochrane osobných údajov.
@@ -32,8 +32,8 @@ export default function PrivacyPage() {
 
           <h2>Prevádzkovateľ</h2>
           <p>
-            Prevádzkovateľom osobných údajov je spoločnosť Montex so sídlom v Košiciach, Slovenská republika. Kontakt:
-            info@montex-klima.sk, +421 944 267 418.
+            Prevádzkovateľom osobných údajov je spoločnosť Klimaro so sídlom v Košiciach, Slovenská republika. Kontakt:
+            info@klimaro.sk, +421 944 267 418.
           </p>
 
           <h2>Aké údaje spracúvame</h2>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
           <h2>Kontakt</h2>
           <p>V prípade akýchkoľvek otázok týkajúcich sa ochrany osobných údajov nás kontaktujte:</p>
           <ul>
-            <li>E-mail: info@montex-klima.sk</li>
+            <li>E-mail: info@klimaro.sk</li>
             <li>Telefón: +421 944 267 418</li>
           </ul>
         </div>

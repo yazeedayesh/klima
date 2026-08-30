@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontaktujte Montex – montáž, predaj a servis klimatizácií v Košiciach a okolí. Zavolajte, napíšte e-mail alebo vyplňte formulár.",
+    "Kontaktujte Klimaro – montáž, predaj a servis klimatizácií v Košiciach a okolí. Zavolajte, napíšte e-mail alebo vyplňte formulár.",
 };
 
 export default function KontaktPage() {

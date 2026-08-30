@@ -25,7 +25,7 @@ export function ContactForm() {
     const message = String(form.get("message") ?? "");
     const product = String(form.get("product") ?? "");
 
-    const subject = product ? `Dopyt – ${product}` : "Dopyt z webu Montex";
+    const subject = product ? `Dopyt – ${product}` : "Dopyt z webu Klimaro";
     const bodyLines = [
       `Meno: ${name}`,
       `Telefón: ${phone}`,

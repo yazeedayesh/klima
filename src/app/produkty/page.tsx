@@ -5,7 +5,7 @@ import { ProduktyClient } from "@/components/produkty-client";
 
 export const metadata: Metadata = {
   title: "Produkty",
-  description: "Klimatizácie a tepelné čerpadlá Montex – nástenné, bezprievanové aj dizajnové jednotky, vždy s montážou.",
+  description: "Klimatizácie a tepelné čerpadlá Klimaro – nástenné, bezprievanové aj dizajnové jednotky, vždy s montážou.",
 };
 
 export default function ProduktyPage() {

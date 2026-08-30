@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Montex – profesionálna montáž, predaj a servis klimatizácií v Košiciach a okolí do 50 km. Certifikovaný tím, jasná cenová ponuka vopred. Pôsobíme aj po celom Slovensku.",
+    "Klimaro – profesionálna montáž, predaj a servis klimatizácií v Košiciach a okolí do 50 km. Certifikovaný tím, jasná cenová ponuka vopred. Pôsobíme aj po celom Slovensku.",
   keywords: [
     "klimatizácie Košice",
     "montáž klimatizácie",
