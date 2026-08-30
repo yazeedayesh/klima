@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoryBySlug, type Product } from "@/lib/products-data";
+import { basePath } from "@/lib/base-path";
 
 export function ProductCard({ product }: { product: Product }) {
   const category = getCategoryBySlug(product.category);
@@ -14,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
         <Image
-          src="/product-placeholder.svg"
+          src={`${basePath}/product-placeholder.svg`}
           alt={`${product.name} – ilustračný obrázok`}
           width={320}
           height={220}

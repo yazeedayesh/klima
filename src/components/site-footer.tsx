@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
+import { basePath } from "@/lib/base-path";
 
 export function SiteFooter() {
   return (
@@ -10,7 +11,7 @@ export function SiteFooter() {
       <Container className="grid gap-10 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
-            <Image src="/mark.svg" alt="Montex" width={36} height={36} />
+            <Image src={`${basePath}/mark.svg`} alt="Montex" width={36} height={36} />
             <span className="font-display text-lg font-bold text-navy-950">{site.name}</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-ink-soft">

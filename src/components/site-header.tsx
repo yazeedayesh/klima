@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { mainNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
+import { basePath } from "@/lib/base-path";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,7 @@ export function SiteHeader() {
 
       <Container className="flex h-20 items-center gap-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <Image src="/mark.svg" alt="Montex" width={40} height={40} priority />
+          <Image src={`${basePath}/mark.svg`} alt="Montex" width={40} height={40} priority />
           <span className="font-display text-lg font-bold text-navy-950">{site.name}</span>
         </Link>
 

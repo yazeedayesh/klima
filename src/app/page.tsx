@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/contact-form";
 import { ProductCard } from "@/components/product-card";
 import { site } from "@/lib/site";
 import { categories, getProductsByCategory } from "@/lib/products-data";
+import { basePath } from "@/lib/base-path";
 
 const heroPills = ["Klimatizácia pre byt a dom", "Bezprievanový komfort", "Riešenie pre firmy"];
 
@@ -98,7 +99,7 @@ export default function HomePage() {
                 </div>
               </div>
               <Image
-                src="/hero-ac.svg"
+                src={`${basePath}/hero-ac.svg`}
                 alt="Nástenná klimatizačná jednotka Montex"
                 width={560}
                 height={460}
