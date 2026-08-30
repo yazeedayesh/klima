@@ -96,13 +96,14 @@ export default function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 700px"
                   className="object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/0 to-navy-950/0" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/75 via-navy-950/0 to-navy-950/0" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-navy-950/65 via-navy-950/10 to-transparent" />
 
-                <div className="absolute left-4 top-4 max-w-[230px] rounded-lg bg-white/95 px-3.5 py-3 shadow-md sm:left-5 sm:top-5">
-                  <div className="inline-flex items-center rounded-md bg-orange-100 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-orange-700">
+                <div className="absolute left-4 top-4 max-w-[230px] sm:left-5 sm:top-5">
+                  <div className="text-[0.65rem] font-semibold uppercase tracking-wide text-orange-300 drop-shadow-sm">
                     Certifikovaná montáž
                   </div>
-                  <h1 className="mt-2 text-lg font-bold leading-snug text-navy-950 sm:text-xl">
+                  <h1 className="mt-1.5 text-lg font-bold leading-snug text-white drop-shadow-md sm:text-xl">
                     Klimatizácia s montážou pre byt aj dom
                   </h1>
                 </div>
