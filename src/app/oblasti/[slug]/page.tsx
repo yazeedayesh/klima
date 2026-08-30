@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { areas, getAreaBySlug } from "@/lib/areas-data";
 import { servicesData } from "@/lib/services-data";
 import { site } from "@/lib/site";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Montáž, predaj a servis klimatizácií v lokalite ${area.name} — ${site.name}, ${
       area.distanceKm === 0 ? "sídlo spoločnosti" : `${area.distanceKm} km od Košíc`
     }.`,
+    alternates: { canonical: `/oblasti/${area.slug}` },
   };
 }
 
@@ -44,6 +46,13 @@ export default async function AreaPage({ params }: Props) {
 
       <section className="py-16">
         <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Domov", href: "/" },
+              { label: "Pôsobnosť", href: "/oblasti" },
+              { label: area.name, href: `/oblasti/${area.slug}` },
+            ]}
+          />
           <div className="max-w-2xl">
             <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
               Pôsobnosť

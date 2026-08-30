@@ -4,6 +4,7 @@ import { ComingSoon } from "@/components/coming-soon";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Rady a návody o klimatizáciách, tepelných čerpadlách a chladení domácnosti či firmy.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

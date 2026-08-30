@@ -7,6 +7,7 @@ import { areas } from "@/lib/areas-data";
 export const metadata: Metadata = {
   title: "Pôsobnosť",
   description: "Klimaro pôsobí v Košiciach a okolí do 50 km, po dohode aj po celom Slovensku.",
+  alternates: { canonical: "/oblasti" },
 };
 
 export default function OblastiPage() {

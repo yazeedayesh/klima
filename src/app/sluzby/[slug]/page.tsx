@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getServiceBySlug, servicesData } from "@/lib/services-data";
 import { getCategoryBySlug } from "@/lib/products-data";
 import { site } from "@/lib/site";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,7 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-  return { title: service.title, description: service.description };
+  return {
+    title: service.title,
+    description: service.description,
+    alternates: { canonical: `/sluzby/${service.slug}` },
+  };
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -31,6 +36,13 @@ export default async function ServicePage({ params }: Props) {
     <>
       <section className="py-16">
         <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Domov", href: "/" },
+              { label: "Služby", href: "/sluzby" },
+              { label: service.title, href: `/sluzby/${service.slug}` },
+            ]}
+          />
           <div className="max-w-2xl">
             <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
               Služby

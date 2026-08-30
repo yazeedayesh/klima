@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Kontakt",
   description:
     "Kontaktujte Klimaro – montáž, predaj a servis klimatizácií v Košiciach a okolí. Zavolajte, napíšte e-mail alebo vyplňte formulár.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktPage() {

@@ -6,6 +6,7 @@ import { servicesData } from "@/lib/services-data";
 export const metadata: Metadata = {
   title: "Služby",
   description: "Predaj, montáž, servis klimatizácií a tepelné čerpadlá – kompletné služby Klimaro v Košiciach a okolí.",
+  alternates: { canonical: "/sluzby" },
 };
 
 export default function SluzbyPage() {

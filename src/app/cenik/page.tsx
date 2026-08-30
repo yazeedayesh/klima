@@ -7,6 +7,7 @@ import { categories, getCategoryPriceRange } from "@/lib/products-data";
 export const metadata: Metadata = {
   title: "Cenník",
   description: "Orientačné ceny montáže, predaja a servisu klimatizácií Klimaro – vždy vrátane inštalácie.",
+  alternates: { canonical: "/cenik" },
 };
 
 const factors = [

@@ -11,11 +11,12 @@ import { site } from "@/lib/site";
 import { categories, getProductsByCategory } from "@/lib/products-data";
 import { basePath } from "@/lib/base-path";
 
-// Drop a real photo at public/hero.(jpg|jpeg|png) and it's used automatically —
+// Drop a real photo at public/hero.(webp|jpg|jpeg|png) and it's used automatically —
 // falls back to the placeholder illustration until then.
 const heroImage =
-  ["hero.jpg", "hero.jpeg", "hero.png"].find((name) => existsSync(join(process.cwd(), "public", name))) ??
-  "hero-ac.svg";
+  ["hero.webp", "hero.jpg", "hero.jpeg", "hero.png"].find((name) =>
+    existsSync(join(process.cwd(), "public", name))
+  ) ?? "hero-ac.svg";
 
 const heroPills = ["Klimatizácia pre byt a dom", "Bezprievanový komfort", "Riešenie pre firmy"];
 
@@ -299,6 +300,20 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="py-20">
         <Container>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faq.map((item) => ({
+                  "@type": "Question",
+                  name: item.q,
+                  acceptedAnswer: { "@type": "Answer", text: item.a },
+                })),
+              }),
+            }}
+          />
           <SectionHead eyebrow="Časté otázky" title="Odpovede skôr, ako sa spýtate" />
           <div className="mt-10 max-w-3xl divide-y divide-line rounded-2xl border border-line">
             {faq.map((item) => (

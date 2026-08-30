@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "O nás",
   description: "Klimaro – certifikovaný tím pre montáž, predaj a servis klimatizácií v Košiciach a okolí.",
+  alternates: { canonical: "/o-nas" },
 };
 
 const values = [

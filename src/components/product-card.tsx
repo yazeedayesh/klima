@@ -7,7 +7,12 @@ export function ProductCard({ product }: { product: Product }) {
   const category = getCategoryBySlug(product.category);
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-md transition-shadow hover:shadow-lg">
+    <div
+      data-product-card
+      data-category={product.category}
+      data-name={product.name.toLowerCase()}
+      className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-md transition-shadow hover:shadow-lg"
+    >
       <div className="relative bg-gray-50">
         {category && (
           <span className="absolute left-3 top-3 z-10 rounded-md bg-navy-900 px-2.5 py-1 text-[0.7rem] font-semibold text-white">

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Ochrana osobných údajov",
   description:
     "Zásady ochrany osobných údajov spoločnosti Klimaro – informácie o spracúvaní osobných údajov v súlade s GDPR, cookies a právach dotknutých osôb.",
+  alternates: { canonical: "/ochrana-osobnych-udajov" },
 };
 
 export default function PrivacyPage() {

@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "Klimaro – profesionálna montáž, predaj a servis klimatizácií v Košiciach a okolí do 50 km. Certifikovaný tím, jasná cenová ponuka vopred. Pôsobíme aj po celom Slovensku.",
+  alternates: { canonical: "/" },
   keywords: [
     "klimatizácie Košice",
     "montáž klimatizácie",
