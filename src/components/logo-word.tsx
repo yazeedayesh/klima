@@ -1,20 +1,21 @@
 export function LogoWord({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex items-baseline ${className}`}>
-      Klimar
+    <span className={`inline-flex items-center gap-[0.12em] ${className}`}>
+      Klimaro
       <svg
-        viewBox="0 0 100 100"
+        viewBox="0 0 140 90"
         aria-hidden="true"
-        className="mx-[0.01em] inline-block h-[0.72em] w-[0.72em] translate-y-[0.06em]"
+        className="inline-block h-[0.62em] w-[1.05em]"
       >
-        {/* dial ring — reads as the letter "o" */}
-        <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" strokeWidth="11" />
-        {/* temperature tick at the top of the dial */}
-        <line x1="50" y1="2" x2="50" y2="15" stroke="currentColor" strokeWidth="11" strokeLinecap="round" />
-        {/* glow behind the lit button */}
-        <circle cx="50" cy="50" r="21" fill="#F5821F" opacity="0.22" />
-        {/* lit power button */}
-        <circle cx="50" cy="50" r="12" fill="#F5821F" />
+        {/* indoor AC unit body */}
+        <rect x="6" y="12" width="128" height="66" rx="12" fill="none" stroke="currentColor" strokeWidth="12" />
+        {/* vent slats */}
+        <line x1="26" y1="40" x2="112" y2="40" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
+        <line x1="26" y1="58" x2="92" y2="58" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.45" />
+        {/* glow behind the lit status light */}
+        <circle cx="112" cy="28" r="15" fill="#F5821F" opacity="0.28" />
+        {/* lit status light */}
+        <circle cx="112" cy="28" r="8" fill="#F5821F" />
       </svg>
     </span>
   );
