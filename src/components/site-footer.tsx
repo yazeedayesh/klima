@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { footerNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
 import { basePath } from "@/lib/base-path";
+import { LogoWord } from "@/components/logo-word";
 
 export function SiteFooter() {
   return (
@@ -12,7 +13,9 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2.5">
             <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={36} height={36} />
-            <span className="font-display text-lg font-bold text-navy-950">{site.name}</span>
+            <span className="font-display text-lg font-bold text-navy-950">
+              <LogoWord />
+            </span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-ink-soft">
             Klimatizácie a servis pre domácnosti, byty aj firemné priestory v Košiciach a okolí.

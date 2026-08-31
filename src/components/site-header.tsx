@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { mainNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
 import { basePath } from "@/lib/base-path";
+import { LogoWord } from "@/components/logo-word";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -41,7 +42,9 @@ export function SiteHeader() {
       <Container className="flex h-20 items-center gap-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={40} height={40} priority />
-          <span className="font-display text-lg font-bold text-navy-950">{site.name}</span>
+          <span className="font-display text-lg font-bold text-navy-950">
+            <LogoWord />
+          </span>
         </Link>
 
         <div className="relative hidden lg:block">
@@ -121,7 +124,9 @@ export function SiteHeader() {
       {open && (
         <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-navy-950 px-6 py-6 text-white lg:hidden">
           <div className="flex items-center justify-between">
-            <span className="font-display text-xl font-bold">{site.name}</span>
+            <span className="font-display text-xl font-bold">
+              <LogoWord />
+            </span>
             <button
               type="button"
               aria-label="Zavrieť menu"
