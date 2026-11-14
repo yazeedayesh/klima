@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -78,11 +79,19 @@ export default function CennikPage() {
                         <div key={item.title} className="flex items-start justify-between gap-6 p-5">
                           <div>
                             <h3 className="font-semibold text-navy-950">{item.title}</h3>
+                            {(item.brand || item.model || item.kw) && (
+                              <p className="num mt-0.5 text-sm font-medium text-accent-strong">
+                                {[item.brand, item.model, item.kw ? `${item.kw} kW` : null].filter(Boolean).join(" · ")}
+                              </p>
+                            )}
                             <p className="mt-1 text-sm text-ink-soft">{item.note}</p>
                           </div>
                           <div className="shrink-0 text-right">
                             <div className="text-sm text-ink-faint">od</div>
                             <div className="font-display text-lg font-bold text-navy-950">{item.priceFrom} €</div>
+                            <Link href="/kontakt" className="mt-1 inline-block text-xs font-medium text-accent hover:underline">
+                              Opýtať sa
+                            </Link>
                           </div>
                         </div>
                       ))}
