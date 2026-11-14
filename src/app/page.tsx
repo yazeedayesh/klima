@@ -63,7 +63,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-wash">
         {/* photo: full-bleed on desktop, banner above the text on mobile */}
-        <div className="relative aspect-[5/4] sm:aspect-[16/9] lg:absolute lg:inset-0 lg:aspect-auto">
+        <div className="relative aspect-[4/3] sm:aspect-[16/7] lg:absolute lg:inset-0 lg:aspect-auto">
           <Image
             src="/hero.webp"
             alt="Nástenná klimatizácia v svetlej obývacej izbe"
@@ -82,31 +82,31 @@ export default function HomePage() {
           />
         </div>
 
-        <Container className="relative py-12 lg:flex lg:min-h-[680px] lg:items-center lg:py-24">
-          <div className="max-w-[35rem] lg:max-w-[29rem] xl:max-w-[35rem]">
-            <p className="rise m-0 font-bold text-accent-strong">
+        <Container className="relative py-10 lg:flex lg:min-h-[540px] lg:items-center lg:py-16">
+          <div className="max-w-[33rem] lg:max-w-[27rem] xl:max-w-[32rem]">
+            <p className="rise m-0 text-[0.95rem] font-semibold text-accent-strong">
               Sídlo Košice · montáž a servis po celom Slovensku
             </p>
             <h1
-              className="rise mb-0 mt-4 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl xl:text-7xl"
+              className="rise mb-0 mt-3 text-4xl leading-[1.08] sm:text-5xl xl:text-[3.25rem]"
               style={{ "--i": 1 } as React.CSSProperties}
             >
               Klimatizácie a tepelné čerpadlá, o ktoré sa nemusíte starať
             </h1>
-            <p className="rise mb-0 mt-6 max-w-lg text-lg text-ink-soft sm:text-xl" style={{ "--i": 2 } as React.CSSProperties}>
+            <p className="rise mb-0 mt-4 max-w-md text-base text-ink-soft sm:text-lg" style={{ "--i": 2 } as React.CSSProperties}>
               Poradíme s výberom, namontujeme a servisujeme. Cenu poznáte ešte pred začatím prác.
             </p>
 
-            <div className="rise mt-9 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
-              <Button href="/kontakt" variant="accent" className="px-7 py-4 text-base">
+            <div className="rise mt-7 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+              <Button href="/kontakt" variant="accent" className="px-6 py-3.5 text-[0.95rem]">
                 Vypýtať si cenovú ponuku
               </Button>
-              <Button href={`tel:${site.phone}`} variant="ghost" className="num px-7 py-4 text-base">
+              <Button href={`tel:${site.phone}`} variant="ghost" className="num px-6 py-3.5 text-[0.95rem]">
                 Zavolať {site.phoneDisplay}
               </Button>
             </div>
 
-            <ul className="rise mt-9 flex flex-wrap gap-x-7 gap-y-2 text-[0.95rem] font-medium text-ink" style={{ "--i": 4 } as React.CSSProperties}>
+            <ul className="rise mt-7 flex flex-wrap gap-x-7 gap-y-2 text-[0.9rem] font-medium text-ink" style={{ "--i": 4 } as React.CSSProperties}>
               {["Obhliadka pred ponukou", "Všetky bežné značky", "Záruka na montáž"].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--accent)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
