@@ -11,6 +11,8 @@ import { hasPrices, priceItems } from "@/lib/pricing-data";
 
 const categories = [...acServicesNav, ...heatPumpNav];
 
+const brands = ["Sinclair", "Hyundai", "Naitec"];
+
 const facts = [
   { value: `${site.yearsExperience} rokov`, text: "montujeme a servisujeme" },
   { value: "Všetky značky", text: "nie sme viazaní na jedného výrobcu" },
@@ -173,28 +175,41 @@ export default function HomePage() {
             </div>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {priceItems.slice(0, 6).map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-white p-6">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-paper text-ink">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-                      <rect x="3" y="6" width="18" height="7" rx="2.5" />
-                      <path d="M6 16c0 2 1.5 3 3 2.6M14 16c0 2 1.8 3.4 4 2.4" />
+                <div key={`${item.brand}-${item.model}-${item.kw}`} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
+                  <div className="relative flex h-36 items-center justify-center bg-paper">
+                    <span className="absolute left-3 top-3 rounded-full bg-ink px-3 py-1 text-[0.7rem] font-semibold text-white">
+                      {item.group}
+                    </span>
+                    <svg viewBox="0 0 64 64" width="52" height="52" fill="none" aria-hidden="true">
+                      <rect x="9" y="19" width="46" height="19" rx="8" fill="none" stroke="#0b1826" strokeWidth="4" opacity="0.8" />
+                      <line x1="17" y1="27.5" x2="47" y2="27.5" stroke="#0b1826" strokeWidth="2.5" opacity="0.4" />
+                      <path d="M16 41c-1 7 4 11 11 10" fill="none" stroke="#bd500a" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </div>
-                  <h3 className="mt-4 text-lg font-bold text-ink">{item.title}</h3>
-                  {(item.brand || item.model || item.kw) && (
-                    <p className="num mt-0.5 text-sm font-medium text-accent-strong">
-                      {[item.brand, item.model, item.kw ? `${item.kw} kW` : null].filter(Boolean).join(" · ")}
-                    </p>
-                  )}
-                  <p className="mt-2 text-sm text-ink-soft">{item.note}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <div>
-                      <span className="text-xs text-ink-faint">od </span>
-                      <span className="font-display text-xl font-bold text-ink">{item.priceFrom} €</span>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="m-0 text-lg font-bold text-ink">
+                      {item.brand} {item.model}
+                    </h3>
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      {item.kw && (
+                        <span className="num rounded-full border border-line px-2.5 py-1 text-xs font-medium text-ink-soft">{item.kw} kW</span>
+                      )}
+                      <span className="rounded-full border border-line px-2.5 py-1 text-xs font-medium text-ink-soft">{item.title}</span>
                     </div>
-                    <Link href="/kontakt" className="text-sm font-semibold text-accent hover:underline">
-                      Opýtať sa
-                    </Link>
+                    <p className="mt-3 mb-0 text-sm text-ink-soft">{item.note}</p>
+                    <div className="mt-4 flex items-center justify-between border-t border-line pt-4">
+                      {item.priceFrom ? (
+                        <div>
+                          <span className="text-xs text-ink-faint">od </span>
+                          <span className="font-display text-xl font-bold text-ink">{item.priceFrom} €</span>
+                        </div>
+                      ) : (
+                        <span className="text-sm font-semibold text-ink-soft">Cena na vyžiadanie</span>
+                      )}
+                    </div>
+                    <Button href="/kontakt" variant="ghost" className="mt-3 w-full justify-center text-sm">
+                      Nezáväzná ponuka
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -219,6 +234,22 @@ export default function HomePage() {
               </div>
             ))}
           </dl>
+        </Container>
+      </section>
+
+      {/* Brands we work with */}
+      <section className="border-b border-line bg-paper py-8">
+        <Container>
+          <p className="m-0 text-center text-xs font-semibold uppercase tracking-wide text-ink-faint">
+            Montujeme a servisujeme zariadenia značiek
+          </p>
+          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+            {brands.map((b) => (
+              <li key={b} className="display text-2xl text-ink/70 sm:text-3xl">
+                {b}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 

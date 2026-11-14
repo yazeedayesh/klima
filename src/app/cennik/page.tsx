@@ -87,8 +87,14 @@ export default function CennikPage() {
                             <p className="mt-1 text-sm text-ink-soft">{item.note}</p>
                           </div>
                           <div className="shrink-0 text-right">
-                            <div className="text-sm text-ink-faint">od</div>
-                            <div className="font-display text-lg font-bold text-navy-950">{item.priceFrom} €</div>
+                            {item.priceFrom ? (
+                              <>
+                                <div className="text-sm text-ink-faint">od</div>
+                                <div className="font-display text-lg font-bold text-navy-950">{item.priceFrom} €</div>
+                              </>
+                            ) : (
+                              <div className="text-sm font-semibold text-ink-soft">Cena na vyžiadanie</div>
+                            )}
                             <Link href="/kontakt" className="mt-1 inline-block text-xs font-medium text-accent hover:underline">
                               Opýtať sa
                             </Link>
