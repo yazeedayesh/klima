@@ -15,7 +15,7 @@ cookie lišta + GA4 (Consent Mode v2), meranie klikov, formulár cez WhatsApp/e-
 - [x] **Vnútorné stránky.** Prejsť `/klimatizacie/*`, `/tepelne-cerpadla/*`, `/oblasti/*`, `/o-nas`,
       `/cennik`, `/kontakt` a zjednotiť ich s domovskou stránkou (rozostupy, nadpisy, zoznamy s linkami
       namiesto kariet). Obsah a URL nemeniť.
-- [ ] **Nové stránky podľa plánu:** `/klimatizacie/multisplit`, `/klimatizacie/pre-firmy`,
+- [x] **Nové stránky podľa plánu:** `/klimatizacie/multisplit`, `/klimatizacie/pre-firmy`,
       `/tepelne-cerpadla/servis`. Každá 600+ slov vecného textu, FAQ, `Service` schema, odkazy na mestá.
 - [ ] **Ďalšie mestá** v `areas-data.ts` (len tie, ktoré klient potvrdí): Spišská Nová Ves, Humenné,
       Vranov nad Topľou, Bardejov, Sabinov — každé s vlastným textom.
