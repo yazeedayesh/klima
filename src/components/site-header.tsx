@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/container";
 import { acServicesNav, heatPumpNav, mainNav, site } from "@/lib/site";
 
@@ -11,6 +11,23 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    closeButtonRef.current?.focus();
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") closeMenu();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  function closeMenu() {
+    setOpen(false);
+    menuButtonRef.current?.focus();
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
@@ -53,6 +70,7 @@ export function SiteHeader() {
           <PhoneIcon />
         </a>
         <button
+          ref={menuButtonRef}
           type="button"
           aria-label="Otvoriť menu"
           aria-expanded={open}
@@ -66,13 +84,14 @@ export function SiteHeader() {
       </Container>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex h-dvh flex-col overflow-y-auto bg-ink px-6 py-5 text-white lg:hidden">
+        <div role="dialog" aria-modal="true" aria-label="Mobilné menu" className="fixed inset-0 z-50 flex h-dvh flex-col overflow-y-auto bg-ink px-6 py-5 text-white lg:hidden">
           <div className="flex items-center justify-between">
             <span className="text-xl font-bold">{site.name}</span>
             <button
+              ref={closeButtonRef}
               type="button"
               aria-label="Zavrieť menu"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="grid h-11 w-11 place-items-center rounded-md border border-white/25"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">

@@ -40,7 +40,7 @@ export function SiteFooter() {
           />
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 text-sm text-white/45 sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col gap-2 text-sm text-white/50 sm:flex-row sm:justify-between">
           <span>
             © {new Date().getFullYear()} {site.name}. Montáž, predaj a servis klimatizácií a tepelných čerpadiel.
           </span>

@@ -14,13 +14,15 @@
   --ink-2: #13283c;
   --ink-3: #1d3a55;
   --ink-soft: #46586a;
-  --ink-faint: #74838f;
+  /* darkened from #74838f to clear WCAG AA (4.5:1) for small text on white/paper */
+  --ink-faint: #63707c;
   --paper: #f6f5f2;
   --paper-2: #ecebe6;
   --white: #ffffff;
   --line: #dddcd6;
 
-  --accent: #c8570c;
+  /* darkened from #c8570c to clear WCAG AA (4.5:1) both as white-on-accent button text and as accent-on-white text */
+  --accent: #bd500a;
   --accent-strong: #a84607;
   --accent-soft: #f8e7d6;
   --accent-glow: #ff9a3d;
