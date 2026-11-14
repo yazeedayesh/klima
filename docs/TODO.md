@@ -20,7 +20,7 @@ cookie lišta + GA4 (Consent Mode v2), meranie klikov, formulár cez WhatsApp/e-
 - [ ] **Ďalšie mestá** v `areas-data.ts` (len tie, ktoré klient potvrdí): Spišská Nová Ves, Humenné,
       Vranov nad Topľou, Bardejov, Sabinov — každé s vlastným textom.
 - [ ] **Výkon.** Lighthouse mobil: LCP < 2,5 s, CLS < 0,1. Hero obrázok má `priority`; over veľkosť súboru.
-- [ ] **Prístupnosť.** Kontrast, poradie fokusu, mobilné menu ovládateľné klávesnicou (Esc zatvára).
+- [x] **Prístupnosť.** Kontrast, poradie fokusu, mobilné menu ovládateľné klávesnicou (Esc zatvára).
 - [ ] **Ochrana osobných údajov.** Doplniť časť o cookies a GA4; údaje prevádzkovateľa nechať ako TODO(klient).
 
 ## B. Čaká na klienta (nevymýšľať)
