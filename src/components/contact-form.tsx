@@ -13,34 +13,52 @@ const services = [
   "Iné",
 ];
 
-type Channel = "whatsapp" | "email";
+type Status = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
-  const [channel, setChannel] = useState<Channel>("whatsapp");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const get = (k: string) => String(form.get(k) ?? "").trim();
-    const lines = [
-      "Dobrý deň, mám záujem o cenovú ponuku.",
-      `Meno: ${get("name")}`,
-      `Telefón: ${get("phone")}`,
-      `Obec / mesto: ${get("city")}`,
-      `Služba: ${get("service")}`,
-      get("message") ? `Popis: ${get("message")}` : null,
-    ].filter(Boolean);
-    const text = lines.join("\n");
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const get = (k: string) => String(data.get(k) ?? "").trim();
 
-    track("odoslanie_dopytu", { kanal: channel, sluzba: get("service") });
+    const payload = {
+      name: get("name"),
+      phone: get("phone"),
+      city: get("city"),
+      service: get("service"),
+      message: get("message"),
+      website: get("website"), // honeypot — must stay empty
+    };
 
-    if (channel === "whatsapp") {
-      window.open(`${site.whatsapp}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-    } else {
-      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-        `Dopyt z webu – ${get("service")}`
-      )}&body=${encodeURIComponent(text)}`;
+    setStatus("submitting");
+
+    try {
+      const res = await fetch("/api/dopyt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("request_failed");
+
+      setStatus("success");
+      track("odoslanie_dopytu", { kanal: "formular", sluzba: payload.service });
+      form.reset();
+    } catch {
+      setStatus("error");
     }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
+        <p className="mb-0 text-lg font-semibold text-ink">Ďakujeme, dopyt sme prijali.</p>
+        <p className="mb-0 mt-2 text-ink-soft">Ozveme sa {site.responseTime}.</p>
+      </div>
+    );
   }
 
   return (
@@ -74,25 +92,38 @@ export function ContactForm() {
         />
       </Field>
 
+      {/* Honeypot — skryté pre ľudí, bežné pre boty. */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="c-website">Webstránka</label>
+        <input id="c-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      {status === "error" && (
+        <p className="mb-0 mt-5 rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
+          Dopyt sa nepodarilo odoslať. Skúste to znova, alebo nás kontaktujte priamo cez WhatsApp či telefonicky.
+        </p>
+      )}
+
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <button
           type="submit"
-          onClick={() => setChannel("whatsapp")}
-          className="rounded-md bg-accent px-6 py-3.5 text-[0.95rem] font-semibold text-white transition-colors hover:bg-accent-strong"
+          disabled={status === "submitting"}
+          className="rounded-md bg-accent px-6 py-3.5 text-[0.95rem] font-semibold text-white transition-colors hover:bg-accent-strong disabled:opacity-60"
         >
-          Odoslať cez WhatsApp
+          {status === "submitting" ? "Odosielam…" : "Odoslať dopyt"}
         </button>
-        <button
-          type="submit"
-          onClick={() => setChannel("email")}
-          className="rounded-md border border-ink/20 px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition-colors hover:border-ink"
+        <a
+          href={`${site.whatsapp}?text=${encodeURIComponent("Dobrý deň, mám záujem o cenovú ponuku.")}`}
+          target="_blank"
+          rel="noopener"
+          onClick={() => track("klik_whatsapp")}
+          className="flex items-center justify-center rounded-md border border-ink/20 px-6 py-3.5 text-center text-[0.95rem] font-semibold text-ink transition-colors hover:border-ink"
         >
-          Odoslať e-mailom
-        </button>
+          Napísať cez WhatsApp
+        </a>
       </div>
       <p className="mb-0 mt-4 text-sm text-ink-faint">
-        Otvorí sa WhatsApp alebo váš e-mail s pripravenou správou — stačí ju odoslať. Ozveme sa {site.responseTime}.
-        Údaje používame len na vybavenie dopytu,{" "}
+        Ozveme sa {site.responseTime}. Údaje používame len na vybavenie dopytu,{" "}
         <Link href="/ochrana-osobnych-udajov" className="underline">
           viac o ochrane údajov
         </Link>

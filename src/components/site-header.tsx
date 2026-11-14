@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { acServicesNav, heatPumpNav, mainNav, site } from "@/lib/site";
-import { basePath } from "@/lib/base-path";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -17,7 +16,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <Container className="flex h-[4.5rem] items-center gap-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={`${site.name} – domov`}>
-          <Image src={`${basePath}/mark.svg`} alt="" width={36} height={36} priority />
+          <Image src="/mark.svg" alt="" width={36} height={36} priority />
           <span className="text-xl font-bold tracking-tight text-ink">{site.name}</span>
         </Link>
 

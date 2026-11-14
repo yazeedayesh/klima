@@ -7,7 +7,6 @@ import Image from "next/image";
 import { AreaMap } from "@/components/home/area-map";
 import { areas } from "@/lib/areas-data";
 import { site } from "@/lib/site";
-import { basePath } from "@/lib/base-path";
 
 const facts = [
   { value: `${site.yearsExperience} rokov`, text: "montujeme a servisujeme" },
@@ -66,7 +65,7 @@ export default function HomePage() {
         {/* photo: full-bleed on desktop, banner above the text on mobile */}
         <div className="relative aspect-[5/4] sm:aspect-[16/9] lg:absolute lg:inset-0 lg:aspect-auto">
           <Image
-            src={`${basePath}/hero.webp`}
+            src="/hero.webp"
             alt="Nástenná klimatizácia v svetlej obývacej izbe"
             fill
             priority
