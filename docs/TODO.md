@@ -12,7 +12,7 @@ cookie lišta + GA4 (Consent Mode v2), meranie klikov, formulár cez WhatsApp/e-
       nepodporuje — ak sa už nepoužíva, odstráň ho z `next.config.ts` a `scripts/`.
 - [x] **OG obrázok.** `src/app/opengraph-image.tsx` zosúladiť s novým vzhľadom (názov, „Klimatizácie a
       tepelné čerpadlá Košice“, telefón).
-- [ ] **Vnútorné stránky.** Prejsť `/klimatizacie/*`, `/tepelne-cerpadla/*`, `/oblasti/*`, `/o-nas`,
+- [x] **Vnútorné stránky.** Prejsť `/klimatizacie/*`, `/tepelne-cerpadla/*`, `/oblasti/*`, `/o-nas`,
       `/cennik`, `/kontakt` a zjednotiť ich s domovskou stránkou (rozostupy, nadpisy, zoznamy s linkami
       namiesto kariet). Obsah a URL nemeniť.
 - [ ] **Nové stránky podľa plánu:** `/klimatizacie/multisplit`, `/klimatizacie/pre-firmy`,
