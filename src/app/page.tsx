@@ -7,6 +7,7 @@ import Image from "next/image";
 import { AreaMap } from "@/components/home/area-map";
 import { areas } from "@/lib/areas-data";
 import { acServicesNav, heatPumpNav, site } from "@/lib/site";
+import { hasPrices, priceItems } from "@/lib/pricing-data";
 
 const categories = [...acServicesNav, ...heatPumpNav];
 
@@ -83,34 +84,36 @@ export default function HomePage() {
               </div>
             </aside>
 
-            <div className="relative isolate overflow-hidden rounded-2xl border border-line">
-              <div className="relative aspect-[4/3] sm:aspect-[16/8]">
-                <Image
-                  src="/hero.webp"
-                  alt="Nástenná klimatizácia v svetlej obývacej izbe"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-cover object-[72%_35%]"
-                />
-              </div>
-              <div className="absolute inset-x-4 bottom-4 max-w-sm rounded-xl bg-white/95 p-5 shadow-lg backdrop-blur-sm sm:inset-x-auto sm:left-6 sm:top-6 sm:bottom-auto">
-                <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
-                  Košice · po celom Slovensku
-                </p>
-                <h1 className="rise mb-0 mt-2 text-2xl leading-[1.1] sm:text-3xl" style={{ "--i": 1 } as React.CSSProperties}>
-                  Klimatizácie a tepelné čerpadlá na kľúč
-                </h1>
-                <p className="rise mb-0 mt-2 text-sm text-ink-soft" style={{ "--i": 2 } as React.CSSProperties}>
-                  Cenu poznáte ešte pred začatím prác.
-                </p>
-                <div className="rise mt-4 flex flex-wrap gap-2.5" style={{ "--i": 3 } as React.CSSProperties}>
-                  <Button href="/kontakt" variant="accent" className="px-5 py-2.5 text-sm">
-                    Vypýtať cenu
-                  </Button>
-                  <Button href={`tel:${site.phone}`} variant="ghost" className="num px-5 py-2.5 text-sm">
-                    Zavolať
-                  </Button>
+            <div className="overflow-hidden rounded-2xl border border-line bg-white">
+              <div className="relative">
+                <div className="relative aspect-[4/3] sm:aspect-[16/8]">
+                  <Image
+                    src="/hero.webp"
+                    alt="Nástenná klimatizácia v svetlej obývacej izbe"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    className="object-cover object-[72%_35%]"
+                  />
+                </div>
+                <div className="p-5 sm:absolute sm:left-6 sm:top-6 sm:max-w-sm sm:rounded-xl sm:bg-white/95 sm:p-5 sm:shadow-lg sm:backdrop-blur-sm">
+                  <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
+                    Košice · po celom Slovensku
+                  </p>
+                  <h1 className="rise mb-0 mt-2 text-2xl leading-[1.1] sm:text-3xl" style={{ "--i": 1 } as React.CSSProperties}>
+                    Klimatizácie a tepelné čerpadlá na kľúč
+                  </h1>
+                  <p className="rise mb-0 mt-2 text-sm text-ink-soft" style={{ "--i": 2 } as React.CSSProperties}>
+                    Cenu poznáte ešte pred začatím prác.
+                  </p>
+                  <div className="rise mt-4 flex flex-wrap gap-2.5" style={{ "--i": 3 } as React.CSSProperties}>
+                    <Button href="/kontakt" variant="accent" className="px-5 py-2.5 text-sm">
+                      Vypýtať cenu
+                    </Button>
+                    <Button href={`tel:${site.phone}`} variant="ghost" className="num px-5 py-2.5 text-sm">
+                      Zavolať
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -151,6 +154,48 @@ export default function HomePage() {
           </ul>
         </Container>
       </section>
+
+      {/* Featured products — real catalog items once pricing-data.ts has real entries */}
+      {hasPrices && (
+        <section className="py-16">
+          <Container>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="m-0 text-3xl sm:text-4xl">Z ponuky</h2>
+              <Link href="/cennik" className="text-sm font-semibold text-accent hover:underline">
+                Celý cenník →
+              </Link>
+            </div>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {priceItems.slice(0, 6).map((item) => (
+                <div key={item.title} className="rounded-2xl border border-line bg-white p-6">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-paper text-ink">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                      <rect x="3" y="6" width="18" height="7" rx="2.5" />
+                      <path d="M6 16c0 2 1.5 3 3 2.6M14 16c0 2 1.8 3.4 4 2.4" />
+                    </svg>
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold text-ink">{item.title}</h3>
+                  {(item.brand || item.model || item.kw) && (
+                    <p className="num mt-0.5 text-sm font-medium text-accent-strong">
+                      {[item.brand, item.model, item.kw ? `${item.kw} kW` : null].filter(Boolean).join(" · ")}
+                    </p>
+                  )}
+                  <p className="mt-2 text-sm text-ink-soft">{item.note}</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-ink-faint">od </span>
+                      <span className="font-display text-xl font-bold text-ink">{item.priceFrom} €</span>
+                    </div>
+                    <Link href="/kontakt" className="text-sm font-semibold text-accent hover:underline">
+                      Opýtať sa
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Facts */}
       <section className="border-b border-line">
