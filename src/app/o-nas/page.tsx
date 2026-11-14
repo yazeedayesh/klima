@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SectionHead } from "@/components/section-head";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -32,20 +34,18 @@ export default function ONasPage() {
   return (
     <>
       <section className="py-16">
+        <Container>
+          <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "O nás", href: "/o-nas" }]} />
+        </Container>
         <Container className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="label-accent">
-              O nás
-            </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl">
-              Chladenie, na ktoré sa dá spoľahnúť
-            </h1>
-            <p className="mt-4 text-ink-soft">
-              {site.name} je tím zameraný na montáž, predaj a servis klimatizácií a tepelných čerpadiel
-              v Košiciach a okolí. Pracujeme priamo s koncovými zákazníkmi aj menšími prevádzkami —
-              od prvej telefonickej konzultácie až po servis dlho po montáži.
-            </p>
-            <p className="mt-4 text-ink-soft">
+            <SectionHead
+              as="h1"
+              eyebrow="O nás"
+              title="Chladenie, na ktoré sa dá spoľahnúť"
+              text={`${site.name} je tím zameraný na montáž, predaj a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí. Pracujeme priamo s koncovými zákazníkmi aj menšími prevádzkami — od prvej telefonickej konzultácie až po servis dlho po montáži.`}
+            />
+            <p className="mt-4 max-w-2xl text-ink-soft">
               Naším cieľom je, aby ste presne vedeli, čo platíte a prečo — bez prekvapení a bez tlaku na
               rýchle rozhodnutie.
             </p>

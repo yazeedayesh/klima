@@ -31,24 +31,32 @@ export default function KlimatizaciePage() {
             text={`Postaráme sa o celý proces — poradíme s výberom jednotky, namontujeme ju a postaráme sa o pravidelnú údržbu. Pôsobíme v Košiciach a okolí do ${site.radiusKm} km.`}
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {servicesData.map((service, i) => (
-              <Link
-                key={service.slug}
-                href={`/klimatizacie/${service.slug}`}
-                className="group flex flex-col rounded-2xl border border-line bg-white p-7 transition-shadow hover:shadow-lg"
-              >
-                <span className="font-display text-sm font-bold text-orange-500">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-4 text-xl font-bold text-navy-950">{service.title}</h2>
-                <p className="mt-2 flex-1 text-sm text-ink-soft">{service.intro}</p>
-                <span className="mt-5 text-sm font-semibold text-navy-900 group-hover:text-orange-600">
-                  Viac informácií →
-                </span>
-              </Link>
+          <ul className="mt-12 border-b border-ink/15">
+            {servicesData.map((service) => (
+              <li key={service.slug}>
+                <Link href={`/klimatizacie/${service.slug}`} className="row-link">
+                  <span>
+                    <span className="block text-lg font-bold text-ink">{service.title}</span>
+                    <span className="block text-[0.95rem] text-ink-soft">{service.intro}</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="chev text-accent"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </Container>
       </section>
 

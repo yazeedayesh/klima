@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { areas, getAreaBySlug } from "@/lib/areas-data";
 import { acServicesNav, heatPumpNav, site } from "@/lib/site";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SectionHead } from "@/components/section-head";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -54,36 +55,47 @@ export default async function AreaPage({ params }: Props) {
               { label: area.name, href: `/oblasti/${area.slug}` },
             ]}
           />
-          <div className="max-w-2xl">
-            <div className="label-accent">
-              Pôsobnosť
-            </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl">Klimatizácie a tepelné čerpadlá {area.name}</h1>
-            <p className="mt-4 text-ink-soft">{area.intro}</p>
-            <p className="mt-3 text-sm text-ink-faint">{area.note}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/kontakt" variant="accent">
-                Nezáväzná ponuka
-              </Button>
-              <Button href={`tel:${site.phone}`} variant="ghost">
-                Zavolať {site.phoneDisplay}
-              </Button>
-            </div>
+          <SectionHead
+            as="h1"
+            eyebrow="Pôsobnosť"
+            title={`Klimatizácie a tepelné čerpadlá ${area.name}`}
+            text={area.intro}
+          />
+          <p className="mt-3 max-w-2xl text-sm text-ink-faint">{area.note}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button href="/kontakt" variant="accent">
+              Nezáväzná ponuka
+            </Button>
+            <Button href={`tel:${site.phone}`} variant="ghost">
+              Zavolať {site.phoneDisplay}
+            </Button>
           </div>
 
           <div className="mt-14">
-            <h2 className="text-xl font-bold text-navy-950">Čo v lokalite {area.name} zabezpečíme</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <h2 className="text-xl font-bold text-ink">Čo v lokalite {area.name} zabezpečíme</h2>
+            <ul className="mt-5 border-b border-ink/15">
               {[...acServicesNav, ...heatPumpNav].map((service) => (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className="rounded-xl border border-line bg-gray-50 px-5 py-4 text-sm font-medium text-navy-950 hover:bg-white hover:shadow-md"
-                >
-                  {service.label}
-                </Link>
+                <li key={service.href}>
+                  <Link href={service.href} className="row-link">
+                    <span className="text-[0.95rem] font-medium text-ink">{service.label}</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      className="chev text-accent"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="mt-14">

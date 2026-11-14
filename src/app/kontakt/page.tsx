@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container } from "@/components/ui/container";
 import { ContactForm } from "@/components/contact-form";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SectionHead } from "@/components/section-head";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -15,17 +17,13 @@ export default function KontaktPage() {
   return (
     <section className="py-20">
       <Container>
-        <div className="max-w-2xl">
-          <div className="label-accent">
-            Kontakt
-          </div>
-          <h1 className="mt-3 text-4xl sm:text-5xl">
-            Kontakt a cenová ponuka
-          </h1>
-          <p className="mt-4 text-ink-soft">
-            Napíšte, čo riešite, alebo rovno zavolajte. Ozveme sa a dohodneme obhliadku.
-          </p>
-        </div>
+        <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "Kontakt", href: "/kontakt" }]} />
+        <SectionHead
+          as="h1"
+          eyebrow="Kontakt"
+          title="Kontakt a cenová ponuka"
+          text="Napíšte, čo riešite, alebo rovno zavolajte. Ozveme sa a dohodneme obhliadku."
+        />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-6 rounded-2xl border border-line bg-gray-50 p-8">

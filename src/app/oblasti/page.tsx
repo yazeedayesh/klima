@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SectionHead } from "@/components/section-head";
 import { areas } from "@/lib/areas-data";
 
 export const metadata: Metadata = {
@@ -15,39 +17,29 @@ export default function OblastiPage() {
     <>
       <section className="py-16">
         <Container>
-          <div className="max-w-2xl">
-            <div className="label-accent">
-              Pôsobnosť
-            </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl">
-              Košice a okolie do 100 km — a po dohode celé Slovensko
-            </h1>
-            <p className="mt-4 text-ink-soft">
-              Sídlime v Košiciach a najčastejšie realizujeme montáže priamo v meste a okolitých obciach.
-              Pri väčších zákazkách radi pricestujeme aj do vzdialenejších regiónov po celom Slovensku.
-            </p>
-          </div>
+          <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "Pôsobnosť", href: "/oblasti" }]} />
+          <SectionHead
+            as="h1"
+            eyebrow="Pôsobnosť"
+            title="Košice a okolie do 100 km — a po dohode celé Slovensko"
+            text="Sídlime v Košiciach a najčastejšie realizujeme montáže priamo v meste a okolitých obciach. Pri väčších zákazkách radi pricestujeme aj do vzdialenejších regiónov po celom Slovensku."
+          />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 border-b border-ink/15">
             {areas.map((area) => (
-              <Link
-                key={area.slug}
-                href={`/oblasti/${area.slug}`}
-                className="group flex flex-col rounded-2xl border border-line bg-white p-6 transition-shadow hover:shadow-lg"
-              >
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-bold text-navy-950">{area.name}</h2>
-                  <span className="rounded-full bg-gray-50 px-2.5 py-1 text-xs font-medium text-ink-faint">
+              <li key={area.slug}>
+                <Link href={`/oblasti/${area.slug}`} className="row-link">
+                  <span>
+                    <span className="block text-lg font-bold text-ink">{area.name}</span>
+                    <span className="block text-[0.95rem] text-ink-soft">{area.intro}</span>
+                  </span>
+                  <span className="num shrink-0 text-sm text-ink-faint">
                     {area.distanceKm === 0 ? "sídlo" : `${area.distanceKm} km`}
                   </span>
-                </div>
-                <p className="mt-2 flex-1 text-sm text-ink-soft">{area.intro}</p>
-                <span className="mt-4 text-sm font-semibold text-navy-900 group-hover:text-orange-600">
-                  Viac o pôsobnosti →
-                </span>
-              </Link>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <div className="mt-10 rounded-2xl border border-line bg-gray-50 p-8 text-center">
             <h2 className="text-lg font-bold text-navy-950">Vaša obec tu nie je uvedená?</h2>
