@@ -15,7 +15,7 @@ const brands = ["Sinclair", "Hyundai", "Naitec"];
 
 const facts = [
   { value: `${site.yearsExperience} rokov`, text: "montujeme a servisujeme" },
-  { value: "Všetky značky", text: "nie sme viazaní na jedného výrobcu" },
+  { value: "Overené značky", text: "Sinclair, Hyundai, Naitec" },
   { value: "Cena vopred", text: "ponuku máte pred začatím prác" },
   { value: "Záruka", text: "na montáž aj na zariadenie" },
 ];
