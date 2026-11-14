@@ -84,8 +84,13 @@ export default function HomePage() {
 
         <Container className="relative py-12 lg:flex lg:min-h-[680px] lg:items-center lg:py-24">
           <div className="max-w-[35rem] lg:max-w-[29rem] xl:max-w-[35rem]">
-            <p className="rise m-0 font-semibold text-accent-strong">Košice a okolie do {site.radiusKm} km</p>
-            <h1 className="rise mb-0 mt-4 text-[2.5rem] leading-[1.05] sm:text-5xl xl:text-6xl" style={{ "--i": 1 } as React.CSSProperties}>
+            <p className="rise m-0 font-bold text-accent-strong">
+              Sídlo Košice · montáž a servis po celom Slovensku
+            </p>
+            <h1
+              className="rise mb-0 mt-4 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl xl:text-7xl"
+              style={{ "--i": 1 } as React.CSSProperties}
+            >
               Klimatizácie a tepelné čerpadlá, o ktoré sa nemusíte starať
             </h1>
             <p className="rise mb-0 mt-6 max-w-lg text-lg text-ink-soft sm:text-xl" style={{ "--i": 2 } as React.CSSProperties}>
@@ -126,7 +131,7 @@ export default function HomePage() {
                   i > 1 ? "max-lg:border-t" : ""
                 } border-line`}
               >
-                <dt className="text-xl font-semibold text-ink sm:text-2xl">{f.value}</dt>
+                <dt className="num text-2xl font-bold text-ink sm:text-3xl">{f.value}</dt>
                 <dd className="m-0 mt-1 text-[0.95rem] text-ink-soft">{f.text}</dd>
               </div>
             ))}
@@ -137,7 +142,7 @@ export default function HomePage() {
       {/* Services: cooling | heating */}
       <section className="py-20 lg:py-28">
         <Container>
-          <h2 className="max-w-3xl text-3xl sm:text-5xl">Jedna firma na chladenie aj kúrenie</h2>
+          <h2 className="max-w-3xl text-4xl sm:text-6xl">Jedna firma na chladenie aj kúrenie</h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             <ServiceColumn
               title="Klimatizácie"
@@ -158,7 +163,7 @@ export default function HomePage() {
       {/* Process — a real sequence, so it is numbered */}
       <section className="bg-paper py-20 lg:py-28">
         <Container>
-          <h2 className="max-w-3xl text-3xl sm:text-5xl">Od telefonátu po hotovú montáž</h2>
+          <h2 className="max-w-3xl text-4xl sm:text-6xl">Od telefonátu po hotovú montáž</h2>
           <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
               <li key={step.title} className="relative border-t border-ink/25 pt-6">
@@ -183,10 +188,14 @@ export default function HomePage() {
       <section id="area" className="bg-ink py-20 text-white lg:py-28">
         <Container className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-3xl text-white sm:text-5xl">Košice a {site.radiusKm} km okolo nich</h2>
-            <p className="mt-5 max-w-lg text-lg text-white/70">
+            <div className="label-light">Pôsobnosť</div>
+            <h2 className="mt-3 text-4xl text-white sm:text-6xl">Košice a {site.radiusKm} km okolo nich</h2>
+            <p className="mt-5 max-w-lg text-xl font-bold text-white">
+              A po dohode namontujeme a servisujeme kdekoľvek na Slovensku.
+            </p>
+            <p className="mt-3 max-w-lg text-lg text-white/70">
               Sídlime v Košiciach a najčastejšie pracujeme v meste a v okolitých okresoch Košického a Prešovského
-              kraja. Pri väčších zákazkách pricestujeme kamkoľvek na Slovensku.
+              kraja — pri väčších zákazkách pricestujeme kamkoľvek po krajine.
             </p>
             <ul className="mt-8 grid max-w-lg grid-cols-2 gap-x-8">
               {areas.map((area) => (
@@ -216,7 +225,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-28">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <h2 className="text-3xl sm:text-5xl">Na čo sa ľudia pýtajú</h2>
+            <h2 className="text-4xl sm:text-6xl">Na čo sa ľudia pýtajú</h2>
             <p className="mt-4 max-w-sm text-lg text-ink-soft">
               Nenašli ste odpoveď? Zavolajte na{" "}
               <a href={`tel:${site.phone}`} className="num whitespace-nowrap font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4">
@@ -233,7 +242,7 @@ export default function HomePage() {
       <section id="contact" className="bg-wash py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <h2 className="text-3xl sm:text-5xl">Vypýtajte si cenovú ponuku</h2>
+            <h2 className="text-4xl sm:text-6xl">Vypýtajte si cenovú ponuku</h2>
             <p className="mt-4 max-w-md text-lg text-ink-soft">
               Napíšte, čo riešite. Ozveme sa {site.responseTime} a dohodneme obhliadku.
             </p>
@@ -263,8 +272,8 @@ function ServiceColumn({
   items: { href: string; title: string; text: string }[];
 }) {
   return (
-    <div className="flex flex-col rounded-2xl bg-paper p-7 sm:p-10">
-      <h3 className="m-0 text-3xl sm:text-4xl">
+    <div className="flex flex-col rounded-2xl bg-paper p-7 shadow-lg sm:p-10">
+      <h3 className="m-0 text-3xl font-bold sm:text-4xl">
         <Link href={href} className="hover:underline">
           {title}
         </Link>

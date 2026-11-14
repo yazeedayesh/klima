@@ -17,7 +17,7 @@ export function SectionHead({
       {eyebrow && as === "h1" && <div className={light ? "label-light" : "label-accent"}>{eyebrow}</div>}
       <Heading
         className={`${eyebrow && as === "h1" ? "mt-3" : ""} ${
-          as === "h1" ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"
+          as === "h1" ? "text-5xl sm:text-6xl" : "text-4xl sm:text-5xl"
         } ${light ? "text-white" : "text-ink"}`}
       >
         {title}
