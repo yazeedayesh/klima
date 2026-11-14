@@ -5,12 +5,12 @@ cookie lišta + GA4 (Consent Mode v2), meranie klikov, formulár cez WhatsApp/e-
 
 ## A. Dá sa urobiť hneď (bez klienta)
 
-- [ ] **Formulár cez server.** Route handler `POST /api/dopyt`, odoslanie e-mailu cez Resend
+- [x] **Formulár cez server.** Route handler `POST /api/dopyt`, odoslanie e-mailu cez Resend
       (`RESEND_API_KEY`, `DOPYT_TO` v `.env.local`), validácia, honeypot proti spamu, stav „odoslané“
       a chybový stav vo formulári. WhatsApp tlačidlo nechaj ako druhú možnosť. Po úspechu volaj
       `track("odoslanie_dopytu")`. Pozor: režim GitHub Pages (`output: "export"`) route handlery
       nepodporuje — ak sa už nepoužíva, odstráň ho z `next.config.ts` a `scripts/`.
-- [ ] **OG obrázok.** `src/app/opengraph-image.tsx` zosúladiť s novým vzhľadom (názov, „Klimatizácie a
+- [x] **OG obrázok.** `src/app/opengraph-image.tsx` zosúladiť s novým vzhľadom (názov, „Klimatizácie a
       tepelné čerpadlá Košice“, telefón).
 - [ ] **Vnútorné stránky.** Prejsť `/klimatizacie/*`, `/tepelne-cerpadla/*`, `/oblasti/*`, `/o-nas`,
       `/cennik`, `/kontakt` a zjednotiť ich s domovskou stránkou (rozostupy, nadpisy, zoznamy s linkami
