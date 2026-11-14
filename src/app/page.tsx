@@ -84,8 +84,8 @@ export default function HomePage() {
               </div>
             </aside>
 
-            <div className="overflow-hidden rounded-2xl border border-line bg-white">
-              <div className="relative aspect-[4/3] sm:aspect-[16/9]">
+            <div className="relative isolate overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10]">
                 <Image
                   src="/hero.webp"
                   alt="Nástenná klimatizácia v svetlej obývacej izbe"
@@ -94,8 +94,16 @@ export default function HomePage() {
                   sizes="(min-width: 1024px) 60vw, 100vw"
                   className="object-cover object-[72%_35%]"
                 />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.88) 30%, rgba(255,255,255,.4) 58%, rgba(255,255,255,0) 78%)",
+                  }}
+                />
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:max-w-md sm:p-6">
                 <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
                   Košice · po celom Slovensku
                 </p>
