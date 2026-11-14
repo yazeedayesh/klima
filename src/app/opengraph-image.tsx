@@ -23,23 +23,22 @@ export default function Image() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 76,
-              height: 76,
-              borderRadius: 20,
-              background: "#13283c",
-              fontSize: 44,
-              fontWeight: 800,
-            }}
-          >
-            K
-          </div>
-          <div style={{ display: "flex", width: 14, height: 14, borderRadius: 999, background: "#c8570c" }} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 76,
+            height: 76,
+            borderRadius: 20,
+            background: "#13283c",
+          }}
+        >
+          <svg viewBox="0 0 64 64" width="44" height="44" fill="none">
+            <rect x="9" y="17" width="46" height="19" rx="8" fill="none" stroke="#FFFFFF" strokeWidth="5" />
+            <line x1="17" y1="25.5" x2="47" y2="25.5" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+            <path d="M16 39c-1 7 4 11 11 10" fill="none" stroke="#ff9a3d" strokeWidth="5" strokeLinecap="round" />
+          </svg>
         </div>
 
         <div style={{ display: "flex", fontSize: 88, fontWeight: 800, marginTop: 48, letterSpacing: -2 }}>
