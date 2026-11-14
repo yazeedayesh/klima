@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Ochrana osobných údajov",
@@ -12,6 +13,12 @@ export default function PrivacyPage() {
   return (
     <section className="py-20">
       <Container>
+        <Breadcrumbs
+          items={[
+            { label: "Domov", href: "/" },
+            { label: "Ochrana osobných údajov", href: "/ochrana-osobnych-udajov" },
+          ]}
+        />
         <div className="max-w-2xl">
           <div className="label-accent">
             Právne informácie
@@ -22,7 +29,7 @@ export default function PrivacyPage() {
         </div>
 
         <div className="mt-10 max-w-3xl space-y-6 text-ink-soft [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-950 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_a]:underline">
-          <p className="text-sm text-ink-faint">Posledná aktualizácia: august 2026</p>
+          <p className="text-sm text-ink-faint">Posledná aktualizácia: november 2026</p>
 
           <p>
             Spoločnosť Klimaro (&bdquo;my&ldquo;, &bdquo;prevádzkovateľ&ldquo;) rešpektuje súkromie návštevníkov a zákazníkov
@@ -33,8 +40,10 @@ export default function PrivacyPage() {
 
           <h2>Prevádzkovateľ</h2>
           <p>
-            Prevádzkovateľom osobných údajov je spoločnosť Klimaro so sídlom v Košiciach, Slovenská republika. Kontakt:
-            info@klimaro.sk, +421 944 267 418.
+            Prevádzkovateľom osobných údajov je Klimaro, Košice, Slovenská republika. Presný právny názov, IČO, DIČ
+            a sídlo prevádzkovateľa <strong>TODO(klient)</strong> — doplníme hneď po potvrdení fakturačných údajov.
+            Do doplnenia nás v záležitostiach ochrany osobných údajov kontaktujte na info@klimaro.sk alebo
+            +421 944 267 418.
           </p>
 
           <h2>Aké údaje spracúvame</h2>
@@ -61,13 +70,20 @@ export default function PrivacyPage() {
             následnú komunikáciu, najviac však 24 mesiacov, pokiaľ osobitný predpis nevyžaduje dlhšiu dobu uchovávania.
           </p>
 
-          <h2>Cookies</h2>
+          <h2>Cookies a Google Analytics</h2>
           <p>
-            Táto stránka používa cookies na zabezpečenie základnej funkčnosti, analýzu návštevnosti a zobrazovanie
-            relevantnej reklamy. Pri prvej návšteve vás o používaní cookies informuje lišta v spodnej časti obrazovky,
-            kde môžete súhlas udeliť alebo odmietnuť. Cookies môžete kedykoľvek zmazať alebo zablokovať v nastaveniach
-            svojho prehliadača.
+            Táto stránka používa Google Analytics 4 (GA4) na meranie návštevnosti, a to v režime Consent Mode v2 —
+            bez vášho súhlasu sa cookies ani žiadne ukladanie údajov na meranie nespúšťajú. Pri prvej návšteve vás o
+            tom informuje lišta v spodnej časti obrazovky, kde môžete analytiku povoliť alebo odmietnuť. Vašu voľbu si
+            prehliadač pamätá (uložením v localStorage) a môžete ju kedykoľvek zmeniť vymazaním údajov stránky v
+            nastaveniach prehliadača, čím sa lišta pri ďalšej návšteve zobrazí znova.
           </p>
+          <ul>
+            <li>Kým GA4 nie je na strane prevádzkovateľa technicky nastavené, lišta sa nezobrazuje a stránka nenačítava žiadny analytický skript ani cookies.</li>
+            <li>Po udelení súhlasu GA4 meria návštevnosť a tri udalosti súvisiace s dopytom na službu: kliknutie na telefónne číslo, kliknutie na WhatsApp a odoslanie kontaktného formulára.</li>
+            <li>Po odmietnutí alebo bez vyjadrenia súhlasu sa žiadne z týchto údajov neukladajú ani neodosielajú.</li>
+            <li>Cookies môžete kedykoľvek zmazať alebo úplne zablokovať aj priamo v nastaveniach svojho prehliadača.</li>
+          </ul>
 
           <h2>Google Ads a reklama tretích strán</h2>
           <ul>
