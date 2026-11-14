@@ -203,6 +203,21 @@
   animation-delay: calc(var(--i, 0) * 90ms);
 }
 
+/* mobile menu entrance — opens with intent instead of popping in */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.menu-in {
+  animation: menu-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 /* links inside lists of services */
 .row-link {
   display: grid;
