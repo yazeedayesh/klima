@@ -303,26 +303,41 @@ export default function HomePage() {
         <Container className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <div className="label-light">Pôsobnosť</div>
-            <h2 className="mt-3 text-4xl text-white sm:text-6xl">Košice a {site.radiusKm} km okolo nich</h2>
+            <h2 className="mt-3 text-4xl text-white sm:text-6xl">Košice, okolie a celé Slovensko</h2>
             <p className="mt-5 max-w-lg text-xl font-bold text-white">
-              A po dohode namontujeme a servisujeme kdekoľvek na Slovensku.
+              Bežné termíny v okolí Košíc, po dohode kdekoľvek na Slovensku.
             </p>
             <p className="mt-3 max-w-lg text-lg text-white/70">
               Sídlime v Košiciach a najčastejšie pracujeme v meste a v okolitých okresoch Košického a Prešovského
-              kraja — pri väčších zákazkách pricestujeme kamkoľvek po krajine.
+              kraja. Do ostatných krajských miest pricestujeme po dohode termínu.
             </p>
             <ul className="mt-8 grid max-w-lg grid-cols-2 gap-x-8">
-              {areas.map((area) => (
-                <li key={area.slug}>
-                  <Link href={`/oblasti/${area.slug}`} className="row-link text-white">
-                    <span className="font-semibold">{area.name}</span>
-                    <span className="num text-sm text-white/50">
-                      {area.distanceKm === 0 ? "sídlo" : `${area.distanceKm} km`}
-                    </span>
-                  </Link>
-                </li>
-              ))}
+              {areas
+                .filter((a) => a.core)
+                .map((area) => (
+                  <li key={area.slug}>
+                    <Link href={`/oblasti/${area.slug}`} className="row-link text-white">
+                      <span className="font-semibold">{area.name}</span>
+                      <span className="num text-sm text-white/50">
+                        {area.distanceKm === 0 ? "sídlo" : `${area.distanceKm} km`}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
             </ul>
+            <p className="mt-6 max-w-lg text-sm text-white/55">
+              Krajské mestá po dohode:{" "}
+              {areas
+                .filter((a) => !a.core)
+                .map((a, i, arr) => (
+                  <span key={a.slug}>
+                    <Link href={`/oblasti/${a.slug}`} className="font-medium text-white hover:underline">
+                      {a.name}
+                    </Link>
+                    {i < arr.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+            </p>
             <div className="mt-8">
               <Button href="/oblasti" variant="outline-light">
                 Všetky oblasti

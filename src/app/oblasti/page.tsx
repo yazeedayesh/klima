@@ -7,8 +7,8 @@ import { SectionHead } from "@/components/section-head";
 import { areas } from "@/lib/areas-data";
 
 export const metadata: Metadata = {
-  title: "Pôsobnosť – Košice a okolie do 100 km",
-  description: "Montáž a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí do 100 km – Prešov, Michalovce, Trebišov, Rožňava a ďalšie. Po dohode celé Slovensko.",
+  title: "Pôsobnosť – Košice, okolie a celé Slovensko",
+  description: "Montáž a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí do 100 km – Prešov, Michalovce, Trebišov, Rožňava a ďalšie. Po dohode aj v krajských mestách po celom Slovensku.",
   alternates: { canonical: "/oblasti" },
 };
 
@@ -25,20 +25,40 @@ export default function OblastiPage() {
             text="Sídlime v Košiciach a najčastejšie realizujeme montáže priamo v meste a okolitých obciach. Pri väčších zákazkách radi pricestujeme aj do vzdialenejších regiónov po celom Slovensku."
           />
 
-          <ul className="mt-12 border-b border-ink/15">
-            {areas.map((area) => (
-              <li key={area.slug}>
-                <Link href={`/oblasti/${area.slug}`} className="row-link">
-                  <span>
-                    <span className="block text-lg font-bold text-ink">{area.name}</span>
-                    <span className="block text-[0.95rem] text-ink-soft">{area.intro}</span>
-                  </span>
-                  <span className="num shrink-0 text-sm text-ink-faint">
-                    {area.distanceKm === 0 ? "sídlo" : `${area.distanceKm} km`}
-                  </span>
-                </Link>
-              </li>
-            ))}
+          <h2 className="mt-12 text-lg font-bold text-ink">Košice a okolie (do 100 km)</h2>
+          <ul className="mt-4 border-b border-ink/15">
+            {areas
+              .filter((a) => a.core)
+              .map((area) => (
+                <li key={area.slug}>
+                  <Link href={`/oblasti/${area.slug}`} className="row-link">
+                    <span>
+                      <span className="block text-lg font-bold text-ink">{area.name}</span>
+                      <span className="block text-[0.95rem] text-ink-soft">{area.intro}</span>
+                    </span>
+                    <span className="num shrink-0 text-sm text-ink-faint">
+                      {area.distanceKm === 0 ? "sídlo" : `${area.distanceKm} km`}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+
+          <h2 className="mt-12 text-lg font-bold text-ink">Krajské mestá (po dohode termínu)</h2>
+          <ul className="mt-4 border-b border-ink/15">
+            {areas
+              .filter((a) => !a.core)
+              .map((area) => (
+                <li key={area.slug}>
+                  <Link href={`/oblasti/${area.slug}`} className="row-link">
+                    <span>
+                      <span className="block text-lg font-bold text-ink">{area.name}</span>
+                      <span className="block text-[0.95rem] text-ink-soft">{area.intro}</span>
+                    </span>
+                    <span className="num shrink-0 text-sm text-ink-faint">{area.distanceKm} km</span>
+                  </Link>
+                </li>
+              ))}
           </ul>
 
           <div className="mt-10 rounded-2xl border border-line bg-gray-50 p-8 text-center">

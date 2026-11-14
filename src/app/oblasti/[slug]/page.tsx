@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { ContactForm } from "@/components/contact-form";
 import { areas, getAreaBySlug } from "@/lib/areas-data";
 import { acServicesNav, heatPumpNav, site } from "@/lib/site";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -113,6 +114,29 @@ export default async function AreaPage({ params }: Props) {
                   </Link>
                 ))}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-16">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <h2 className="m-0 text-2xl font-bold text-ink sm:text-3xl">
+                Dopyt pre {area.name}
+              </h2>
+              <p className="mt-3 max-w-md text-ink-soft">
+                {area.core
+                  ? `Napíšte, čo riešite — ozveme sa ${site.responseTime} a dohodneme obhliadku.`
+                  : "Napíšte parametre priestoru a požadovaný termín — pripravíme ponuku a naplánujeme cestu."}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href={`tel:${site.phone}`} className="num text-lg font-semibold text-ink hover:underline">
+                  {site.phoneDisplay}
+                </a>
+              </div>
+            </div>
+            <ContactForm />
           </div>
         </Container>
       </section>

@@ -18,7 +18,7 @@ const LABEL: Record<string, { dx: number; dy: number; anchor: "start" | "middle"
 
 // Real geography: every town is plotted by its distance and bearing from Košice.
 export function AreaMap() {
-  const towns = areas.filter((a) => a.distanceKm > 0);
+  const towns = areas.filter((a) => a.core && a.distanceKm > 0);
   return (
     <svg viewBox={`-62 0 ${SIZE + 124} ${SIZE}`} className="w-full" role="img" aria-label={`Mapa pôsobnosti: Košice a okolie do ${site.radiusKm} km`}>
       {[25, 50, 75, 100].map((km) => (
