@@ -6,15 +6,9 @@ import { FaqList } from "@/components/faq-list";
 import Image from "next/image";
 import { AreaMap } from "@/components/home/area-map";
 import { areas } from "@/lib/areas-data";
-import { site } from "@/lib/site";
+import { acServicesNav, heatPumpNav, site } from "@/lib/site";
 
-const categories = [
-  { href: "/klimatizacie/montaz", label: "Montáž klimatizácie" },
-  { href: "/klimatizacie/multisplit", label: "Multisplit (viac izieb)" },
-  { href: "/klimatizacie/pre-firmy", label: "Klimatizácie pre firmy" },
-  { href: "/tepelne-cerpadla", label: "Tepelné čerpadlá" },
-  { href: "/klimatizacie/servis", label: "Servis a čistenie" },
-];
+const categories = [...acServicesNav, ...heatPumpNav];
 
 const facts = [
   { value: `${site.yearsExperience} rokov`, text: "montujeme a servisujeme" },
@@ -68,70 +62,82 @@ const faq = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-wash">
-        {/* photo: full-bleed on desktop, banner above the text on mobile */}
-        <div className="relative aspect-[4/3] sm:aspect-[16/7] lg:absolute lg:inset-0 lg:aspect-auto">
-          <Image
-            src="/hero.webp"
-            alt="Nástenná klimatizácia v svetlej obývacej izbe"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[72%_35%] lg:object-right"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 hidden lg:block"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(246,245,242,.96) 0%, rgba(246,245,242,.9) 34%, rgba(246,245,242,.45) 52%, rgba(246,245,242,0) 68%)",
-            }}
-          />
-        </div>
+      {/* Hero — categories | hero card | quick-help, the "browse, don't just read" layout */}
+      <section className="bg-paper py-6 lg:py-8">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-[220px_1fr_260px]">
+            <aside className="hidden lg:block">
+              <div className="rounded-2xl border border-line bg-white p-5">
+                <h2 className="px-1 text-sm font-bold text-ink">Kategórie</h2>
+                <nav aria-label="Kategórie" className="mt-2 flex flex-col">
+                  {categories.map((c) => (
+                    <Link
+                      key={c.href}
+                      href={c.href}
+                      className="rounded-lg px-2 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper hover:text-ink"
+                    >
+                      {c.label}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </aside>
 
-        <Container className="relative py-10 lg:flex lg:min-h-[540px] lg:items-center lg:py-16">
-          <div className="max-w-[33rem] lg:max-w-[27rem] xl:max-w-[32rem]">
-            <p className="rise m-0 text-[0.95rem] font-semibold text-accent-strong">
-              Sídlo Košice · montáž a servis po celom Slovensku
-            </p>
-            <h1
-              className="rise mb-0 mt-3 text-4xl leading-[1.08] sm:text-5xl xl:text-[3.25rem]"
-              style={{ "--i": 1 } as React.CSSProperties}
-            >
-              Klimatizácie a tepelné čerpadlá, o ktoré sa nemusíte starať
-            </h1>
-            <p className="rise mb-0 mt-4 max-w-md text-base text-ink-soft sm:text-lg" style={{ "--i": 2 } as React.CSSProperties}>
-              Poradíme s výberom, namontujeme a servisujeme. Cenu poznáte ešte pred začatím prác.
-            </p>
-
-            <div className="rise mt-7 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
-              <Button href="/kontakt" variant="accent" className="px-6 py-3.5 text-[0.95rem]">
-                Vypýtať si cenovú ponuku
-              </Button>
-              <Button href={`tel:${site.phone}`} variant="ghost" className="num px-6 py-3.5 text-[0.95rem]">
-                Zavolať {site.phoneDisplay}
-              </Button>
+            <div className="relative isolate overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/3] sm:aspect-[16/8]">
+                <Image
+                  src="/hero.webp"
+                  alt="Nástenná klimatizácia v svetlej obývacej izbe"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-cover object-[72%_35%]"
+                />
+              </div>
+              <div className="absolute inset-x-4 bottom-4 max-w-sm rounded-xl bg-white/95 p-5 shadow-lg backdrop-blur-sm sm:inset-x-auto sm:left-6 sm:top-6 sm:bottom-auto">
+                <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
+                  Košice · po celom Slovensku
+                </p>
+                <h1 className="rise mb-0 mt-2 text-2xl leading-[1.1] sm:text-3xl" style={{ "--i": 1 } as React.CSSProperties}>
+                  Klimatizácie a tepelné čerpadlá na kľúč
+                </h1>
+                <p className="rise mb-0 mt-2 text-sm text-ink-soft" style={{ "--i": 2 } as React.CSSProperties}>
+                  Cenu poznáte ešte pred začatím prác.
+                </p>
+                <div className="rise mt-4 flex flex-wrap gap-2.5" style={{ "--i": 3 } as React.CSSProperties}>
+                  <Button href="/kontakt" variant="accent" className="px-5 py-2.5 text-sm">
+                    Vypýtať cenu
+                  </Button>
+                  <Button href={`tel:${site.phone}`} variant="ghost" className="num px-5 py-2.5 text-sm">
+                    Zavolať
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <ul className="rise mt-7 flex flex-wrap gap-x-7 gap-y-2 text-[0.9rem] font-medium text-ink" style={{ "--i": 4 } as React.CSSProperties}>
-              {["Obhliadka pred ponukou", "Všetky bežné značky", "Záruka na montáž"].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--accent)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <aside className="hidden flex-col gap-4 lg:flex">
+              <div className="rounded-2xl bg-ink p-5 text-white">
+                <h3 className="m-0 text-base font-bold text-white">Máte už klimatizáciu?</h3>
+                <p className="mt-2 text-sm text-white/70">
+                  Pravidelný servis predlžuje životnosť jednotky a znižuje spotrebu energie.
+                </p>
+                <Link href="/klimatizacie/servis" className="mt-4 inline-block text-sm font-semibold text-accent-glow hover:underline">
+                  Objednať servis →
+                </Link>
+              </div>
+              <div className="rounded-2xl border border-line bg-white p-5">
+                <h3 className="m-0 text-base font-bold text-ink">Neviete vybrať model?</h3>
+                <p className="mt-2 text-sm text-ink-soft">
+                  Poradíme podľa veľkosti miestnosti, využitia aj rozpočtu — telefonicky alebo na mieste.
+                </p>
+                <Link href="/kontakt" className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">
+                  Poradiť pri výbere →
+                </Link>
+              </div>
+            </aside>
           </div>
-        </Container>
-      </section>
 
-      {/* Quick category links — the "where do I start" row */}
-      <nav aria-label="Rýchly výber" className="border-b border-line bg-paper">
-        <Container>
-          <ul className="flex flex-nowrap gap-2.5 overflow-x-auto py-3.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <ul className="mt-5 flex flex-nowrap gap-2.5 overflow-x-auto [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
             {categories.map((c) => (
               <li key={c.href} className="shrink-0">
                 <Link
@@ -144,7 +150,7 @@ export default function HomePage() {
             ))}
           </ul>
         </Container>
-      </nav>
+      </section>
 
       {/* Facts */}
       <section className="border-b border-line">
