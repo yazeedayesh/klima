@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsappFloat } from "@/components/whatsapp-float";
@@ -28,6 +29,20 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
 };
+
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = {
@@ -63,7 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <html lang="sk" data-scroll-behavior="smooth">
+    <html lang="sk" data-scroll-behavior="smooth" className={`${jakarta.variable} ${inter.variable}`}>
       <head>
         <meta name="theme-color" content="#0b1826" />
       </head>
