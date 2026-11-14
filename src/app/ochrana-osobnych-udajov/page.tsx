@@ -13,10 +13,10 @@ export default function PrivacyPage() {
     <section className="py-20">
       <Container>
         <div className="max-w-2xl">
-          <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+          <div className="label-accent">
             Právne informácie
           </div>
-          <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">
+          <h1 className="mt-3 text-4xl sm:text-5xl">
             Zásady ochrany osobných údajov
           </h1>
         </div>

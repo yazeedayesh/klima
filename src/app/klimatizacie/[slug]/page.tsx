@@ -3,12 +3,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { getServiceBySlug, servicesData } from "@/lib/services-data";
-import { getCategoryBySlug } from "@/lib/products-data";
-import { site } from "@/lib/site";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FaqList } from "@/components/faq-list";
+import { getServiceBySlug, servicesData } from "@/lib/services-data";
+import { areas } from "@/lib/areas-data";
+import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return servicesData.map((s) => ({ slug: s.slug }));
@@ -19,9 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: service.title,
+    title: service.metaTitle,
     description: service.description,
-    alternates: { canonical: `/sluzby/${service.slug}` },
+    alternates: { canonical: `/klimatizacie/${service.slug}` },
   };
 }
 
@@ -30,34 +33,42 @@ export default async function ServicePage({ params }: Props) {
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
-  const category = service.categorySlug ? getCategoryBySlug(service.categorySlug) : undefined;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.title,
+    description: service.description,
+    url: `${site.url}/klimatizacie/${service.slug}`,
+    provider: { "@id": `${site.url}/#business` },
+    areaServed: areas.map((a) => ({ "@type": "City", name: a.name })),
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="py-16">
         <Container>
           <Breadcrumbs
             items={[
               { label: "Domov", href: "/" },
-              { label: "Služby", href: "/sluzby" },
-              { label: service.title, href: `/sluzby/${service.slug}` },
+              { label: "Klimatizácie", href: "/klimatizacie" },
+              { label: service.title, href: `/klimatizacie/${service.slug}` },
             ]}
           />
           <div className="max-w-2xl">
-            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
-              Služby
+            <div className="label-accent">
+              Klimatizácie
             </div>
-            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">{service.title}</h1>
+            <h1 className="mt-3 text-4xl sm:text-5xl">{service.h1}</h1>
             <p className="mt-4 text-ink-soft">{service.intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/kontakt" variant="accent">
                 Nezáväzná ponuka
               </Button>
-              {category && (
-                <Button href={`/produkty?kategoria=${category.slug}`} variant="ghost">
-                  Pozrieť produkty
-                </Button>
-              )}
+              <Button href={`tel:${site.phone}`} variant="ghost">
+                Zavolať {site.phoneDisplay}
+              </Button>
             </div>
           </div>
 
@@ -76,22 +87,22 @@ export default async function ServicePage({ params }: Props) {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-8 shadow-md">
+            <div className="rounded-2xl border border-line bg-white p-8">
               <h2 className="text-xl font-bold text-navy-950">Kontaktné údaje</h2>
               <p className="mt-3 text-sm text-ink-soft">
-                Zavolajte nám priamo, alebo vyplňte krátky formulár a ozveme sa vám e-mailom do 24 hodín.
+                Zavolajte nám priamo, alebo vyplňte krátky formulár a ozveme sa vám {site.responseTime}.
               </p>
               <div className="mt-6 space-y-4">
                 <a href={`tel:${site.phone}`} className="block">
-                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Zavolajte nám</div>
+                  <div className="text-sm text-ink-faint">Zavolajte nám</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">{site.phoneDisplay}</div>
                 </a>
                 <a href={`mailto:${site.email}`} className="block">
-                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">E-mail</div>
+                  <div className="text-sm text-ink-faint">E-mail</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">{site.email}</div>
                 </a>
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Pôsobisko</div>
+                  <div className="text-sm text-ink-faint">Pôsobisko</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">
                     {site.areaShort}, po dohode celé Slovensko
                   </div>
@@ -105,6 +116,28 @@ export default async function ServicePage({ params }: Props) {
               </Link>
             </div>
           </div>
+
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold text-navy-950">Časté otázky</h2>
+            <div className="mt-6">
+              <FaqList items={service.faq} />
+            </div>
+          </div>
+
+          <div className="mt-16">
+            <h2 className="text-xl font-bold text-navy-950">{service.title} v okolí Košíc</h2>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {areas.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/oblasti/${a.slug}`}
+                  className="rounded-full border border-line px-4 py-1.5 text-sm text-ink-soft hover:bg-gray-50"
+                >
+                  {a.name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -112,7 +145,7 @@ export default async function ServicePage({ params }: Props) {
         <Container>
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-navy-950 p-10 text-white sm:flex-row sm:items-center sm:justify-between lg:p-14">
             <div>
-              <h3 className="text-2xl font-bold sm:text-3xl">Ostatné služby</h3>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">Ďalšie služby</h2>
               <p className="mt-2 text-white/70">Pozrite si aj ďalšie oblasti, v ktorých vám vieme pomôcť.</p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -121,12 +154,18 @@ export default async function ServicePage({ params }: Props) {
                 .map((s) => (
                   <Link
                     key={s.slug}
-                    href={`/sluzby/${s.slug}`}
+                    href={`/klimatizacie/${s.slug}`}
                     className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10"
                   >
                     {s.title}
                   </Link>
                 ))}
+              <Link
+                href="/tepelne-cerpadla"
+                className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10"
+              >
+                Tepelné čerpadlá
+              </Link>
             </div>
           </div>
         </Container>

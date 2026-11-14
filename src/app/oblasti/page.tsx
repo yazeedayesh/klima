@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { areas } from "@/lib/areas-data";
 
 export const metadata: Metadata = {
-  title: "Pôsobnosť",
-  description: "Klimaro pôsobí v Košiciach a okolí do 50 km, po dohode aj po celom Slovensku.",
+  title: "Pôsobnosť – Košice a okolie do 100 km",
+  description: "Montáž a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí do 100 km – Prešov, Michalovce, Trebišov, Rožňava a ďalšie. Po dohode celé Slovensko.",
   alternates: { canonical: "/oblasti" },
 };
 
@@ -16,11 +16,11 @@ export default function OblastiPage() {
       <section className="py-16">
         <Container>
           <div className="max-w-2xl">
-            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+            <div className="label-accent">
               Pôsobnosť
             </div>
-            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">
-              Košice a okolie do 50 km — no radi prídeme kamkoľvek na Slovensku
+            <h1 className="mt-3 text-4xl sm:text-5xl">
+              Košice a okolie do 100 km — a po dohode celé Slovensko
             </h1>
             <p className="mt-4 text-ink-soft">
               Sídlime v Košiciach a najčastejšie realizujeme montáže priamo v meste a okolitých obciach.
@@ -33,7 +33,7 @@ export default function OblastiPage() {
               <Link
                 key={area.slug}
                 href={`/oblasti/${area.slug}`}
-                className="group flex flex-col rounded-2xl border border-line bg-white p-6 shadow-md transition-shadow hover:shadow-lg"
+                className="group flex flex-col rounded-2xl border border-line bg-white p-6 transition-shadow hover:shadow-lg"
               >
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold text-navy-950">{area.name}</h2>

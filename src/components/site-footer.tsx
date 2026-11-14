@@ -1,80 +1,64 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { footerNav, site } from "@/lib/site";
-import { categories } from "@/lib/products-data";
-import { basePath } from "@/lib/base-path";
-import { LogoWord } from "@/components/logo-word";
+import { acServicesNav, heatPumpNav, mainNav, site } from "@/lib/site";
+import { areas } from "@/lib/areas-data";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-line bg-gray-50">
-      <Container className="grid gap-10 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-        <div>
-          <div className="flex items-center gap-2.5">
-            <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={36} height={36} />
-            <span className="font-display text-lg font-bold text-navy-950">
-              <LogoWord />
-            </span>
+    <footer className="mt-auto bg-ink text-white">
+      <Container className="py-16">
+        <div className="flex flex-col gap-8 border-b border-white/12 pb-12 lg:flex-row lg:items-end lg:justify-between">
+          <p className="display m-0 text-4xl text-white sm:text-6xl">
+            Doma <span className="num">22 °C</span>.
+            <br />
+            <span className="text-white/45">V lete aj v zime.</span>
+          </p>
+          <div className="flex flex-col gap-1 lg:text-right">
+            <a href={`tel:${site.phone}`} className="num text-2xl font-semibold hover:text-accent-glow sm:text-3xl">
+              {site.phoneDisplay}
+            </a>
+            <a href={`mailto:${site.email}`} className="text-white/70 hover:text-white">
+              {site.email}
+            </a>
+            <span className="text-sm text-white/50">{site.hours}</span>
           </div>
-          <p className="mt-4 max-w-xs text-sm text-ink-soft">
-            Klimatizácie a servis pre domácnosti, byty aj firemné priestory v Košiciach a okolí.
-          </p>
-          <p className="mt-4 text-sm text-ink-soft">
-            {site.address.locality}
-            <br />
-            {site.phoneDisplay}
-            <br />
-            {site.email}
-          </p>
         </div>
 
-        <FooterCol title="Ponuka" links={footerNav.quick} />
-        <FooterCol
-          title="Kategórie"
-          links={categories.map((c) => ({ href: `/produkty?kategoria=${c.slug}`, label: c.name }))}
-        />
+        <div className="grid gap-10 pt-12 sm:grid-cols-2 lg:grid-cols-4">
+          <FooterCol title="Klimatizácie" links={[{ href: "/klimatizacie", label: "Prehľad" }, ...acServicesNav]} />
+          <FooterCol title="Tepelné čerpadlá" links={heatPumpNav} />
+          <FooterCol
+            title="Kde pracujeme"
+            links={areas.map((a) => ({ href: `/oblasti/${a.slug}`, label: a.name }))}
+          />
+          <FooterCol
+            title={site.name}
+            links={[
+              ...mainNav.filter((l) => !["/klimatizacie", "/tepelne-cerpadla"].includes(l.href)),
+              { href: "/ochrana-osobnych-udajov", label: "Ochrana osobných údajov" },
+            ]}
+          />
+        </div>
 
-        <div className="rounded-2xl bg-navy-950 p-6 text-white">
-          <h4 className="font-display text-base font-bold">Nezáväzná ponuka</h4>
-          <p className="mt-2 text-sm text-white/70">
-            Pošlite nám parametre priestoru a pripravíme vhodné riešenie do 24 hodín.
-          </p>
-          <Link
-            href="/kontakt"
-            className="mt-4 inline-flex rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-600"
-          >
-            Odoslať dopyt
-          </Link>
+        <div className="mt-14 flex flex-col gap-2 text-sm text-white/45 sm:flex-row sm:justify-between">
+          <span>
+            © {new Date().getFullYear()} {site.name}. Montáž, predaj a servis klimatizácií a tepelných čerpadiel.
+          </span>
+          <span>{site.areaShort}, po dohode celé Slovensko</span>
         </div>
       </Container>
-
-      <div className="border-t border-line">
-        <Container className="flex flex-col items-center gap-2 py-6 text-sm text-ink-faint sm:flex-row sm:justify-between">
-          <span>© {new Date().getFullYear()} {site.name}. Všetky práva vyhradené.</span>
-          <Link href={footerNav.legal[0].href} className="hover:text-ink">
-            {footerNav.legal[0].label}
-          </Link>
-        </Container>
-      </div>
     </footer>
   );
 }
 
-function FooterCol({
-  title,
-  links,
-}: {
-  title: string;
-  links: { href: string; label: string }[];
-}) {
+function FooterCol({ title, links }: { title: string; links: { href: string; label: string }[] }) {
   return (
     <div>
-      <h4 className="font-display text-sm font-bold text-navy-950">{title}</h4>
-      <ul className="mt-4 space-y-3">
+      <h2 className="m-0 text-base text-white">{title}</h2>
+      <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="text-sm text-ink-soft transition-colors hover:text-navy-900">
+            <Link href={link.href} className="text-[0.95rem] text-white/65 transition-colors hover:text-white">
               {link.label}
             </Link>
           </li>

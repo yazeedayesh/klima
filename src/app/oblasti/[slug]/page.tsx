@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { areas, getAreaBySlug } from "@/lib/areas-data";
-import { servicesData } from "@/lib/services-data";
-import { site } from "@/lib/site";
+import { acServicesNav, heatPumpNav, site } from "@/lib/site";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return areas.map((a) => ({ slug: a.slug }));
@@ -19,10 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const area = getAreaBySlug(slug);
   if (!area) return {};
   return {
-    title: `Klimatizácie ${area.name}`,
-    description: `Montáž, predaj a servis klimatizácií v lokalite ${area.name} — ${site.name}, ${
-      area.distanceKm === 0 ? "sídlo spoločnosti" : `${area.distanceKm} km od Košíc`
-    }.`,
+    title: `Klimatizácie a tepelné čerpadlá ${area.name}`,
+    description: `Montáž, predaj a servis klimatizácií a tepelných čerpadiel – ${area.name}${
+      area.distanceKm === 0 ? "" : ` (${area.distanceKm} km od Košíc)`
+    }. Cena vopred, obhliadka po dohode. ${site.name}.`,
     alternates: { canonical: `/oblasti/${area.slug}` },
   };
 }
@@ -35,8 +36,8 @@ export default async function AreaPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Montáž a servis klimatizácií",
-    provider: { "@type": "HVACBusiness", name: site.name, telephone: site.phone },
+    serviceType: "Montáž a servis klimatizácií a tepelných čerpadiel",
+    provider: { "@id": `${site.url}/#business` },
     areaServed: { "@type": "City", name: area.name },
   };
 
@@ -54,10 +55,10 @@ export default async function AreaPage({ params }: Props) {
             ]}
           />
           <div className="max-w-2xl">
-            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+            <div className="label-accent">
               Pôsobnosť
             </div>
-            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">Klimatizácie {area.name}</h1>
+            <h1 className="mt-3 text-4xl sm:text-5xl">Klimatizácie a tepelné čerpadlá {area.name}</h1>
             <p className="mt-4 text-ink-soft">{area.intro}</p>
             <p className="mt-3 text-sm text-ink-faint">{area.note}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -73,13 +74,13 @@ export default async function AreaPage({ params }: Props) {
           <div className="mt-14">
             <h2 className="text-xl font-bold text-navy-950">Čo v lokalite {area.name} zabezpečíme</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {servicesData.map((service) => (
+              {[...acServicesNav, ...heatPumpNav].map((service) => (
                 <Link
-                  key={service.slug}
-                  href={`/sluzby/${service.slug}`}
+                  key={service.href}
+                  href={service.href}
                   className="rounded-xl border border-line bg-gray-50 px-5 py-4 text-sm font-medium text-navy-950 hover:bg-white hover:shadow-md"
                 >
-                  {service.title}
+                  {service.label}
                 </Link>
               ))}
             </div>

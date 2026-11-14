@@ -1,5 +1,5 @@
 {
-  "name": "montex-klima-site",
+  "name": "klimaro-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
     "next": "16.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8"
