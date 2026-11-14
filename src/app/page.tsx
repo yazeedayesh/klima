@@ -8,6 +8,14 @@ import { AreaMap } from "@/components/home/area-map";
 import { areas } from "@/lib/areas-data";
 import { site } from "@/lib/site";
 
+const categories = [
+  { href: "/klimatizacie/montaz", label: "Montáž klimatizácie" },
+  { href: "/klimatizacie/multisplit", label: "Multisplit (viac izieb)" },
+  { href: "/klimatizacie/pre-firmy", label: "Klimatizácie pre firmy" },
+  { href: "/tepelne-cerpadla", label: "Tepelné čerpadlá" },
+  { href: "/klimatizacie/servis", label: "Servis a čistenie" },
+];
+
 const facts = [
   { value: `${site.yearsExperience} rokov`, text: "montujeme a servisujeme" },
   { value: "Všetky značky", text: "nie sme viazaní na jedného výrobcu" },
@@ -119,6 +127,24 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Quick category links — the "where do I start" row */}
+      <nav aria-label="Rýchly výber" className="border-b border-line bg-paper">
+        <Container>
+          <ul className="flex flex-nowrap gap-2.5 overflow-x-auto py-3.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {categories.map((c) => (
+              <li key={c.href} className="shrink-0">
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-accent hover:text-ink"
+                >
+                  {c.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </nav>
 
       {/* Facts */}
       <section className="border-b border-line">
