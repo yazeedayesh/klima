@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...servicesData.map((s) => page(`/klimatizacie/${s.slug}`, 0.8)),
     page("/tepelne-cerpadla", 0.9),
     page("/tepelne-cerpadla/dotacia", 0.8),
+    page("/tepelne-cerpadla/servis", 0.8),
     ...(hasPrices ? [page("/cennik", 0.7)] : []),
     page("/oblasti", 0.7),
     ...areas.map((a) => page(`/oblasti/${a.slug}`, 0.7)),

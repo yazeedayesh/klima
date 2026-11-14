@@ -34,11 +34,14 @@ export const acServicesNav: NavLink[] = [
   { href: "/klimatizacie/predaj", label: "Predaj klimatizácií" },
   { href: "/klimatizacie/montaz", label: "Montáž klimatizácie" },
   { href: "/klimatizacie/servis", label: "Servis a čistenie" },
+  { href: "/klimatizacie/multisplit", label: "Multisplit klimatizácia" },
+  { href: "/klimatizacie/pre-firmy", label: "Klimatizácie pre firmy" },
 ];
 
 export const heatPumpNav: NavLink[] = [
   { href: "/tepelne-cerpadla", label: "Tepelné čerpadlá vzduch-voda" },
   { href: "/tepelne-cerpadla/dotacia", label: "Dotácia Zelená domácnostiam" },
+  { href: "/tepelne-cerpadla/servis", label: "Servis tepelného čerpadla" },
 ];
 
 export const mainNav: NavLink[] = [

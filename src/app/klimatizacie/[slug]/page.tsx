@@ -72,6 +72,16 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
 
+          {service.body && service.body.length > 0 && (
+            <div className="mt-10 max-w-2xl space-y-4 text-ink-soft">
+              {service.body.map((paragraph, i) => (
+                <p key={i} className="m-0">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          )}
+
           <div className="mt-14 grid gap-10 lg:grid-cols-2">
             <div className="rounded-2xl border border-line bg-gray-50 p-8">
               <h2 className="text-xl font-bold text-navy-950">Čo je súčasťou</h2>
