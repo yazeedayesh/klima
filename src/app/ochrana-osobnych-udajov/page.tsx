@@ -11,24 +11,29 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <section className="py-20">
-      <Container>
-        <Breadcrumbs
-          items={[
-            { label: "Domov", href: "/" },
-            { label: "Ochrana osobných údajov", href: "/ochrana-osobnych-udajov" },
-          ]}
-        />
-        <div className="max-w-2xl">
-          <div className="label-accent">
-            Právne informácie
+    <>
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
+        <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Domov", href: "/" },
+              { label: "Ochrana osobných údajov", href: "/ochrana-osobnych-udajov" },
+            ]}
+          />
+          <div className="max-w-2xl">
+            <div className="label-accent">
+              Právne informácie
+            </div>
+            <h1 className="mt-3 text-4xl sm:text-5xl">
+              Zásady ochrany osobných údajov
+            </h1>
           </div>
-          <h1 className="mt-3 text-4xl sm:text-5xl">
-            Zásady ochrany osobných údajov
-          </h1>
-        </div>
+        </Container>
+      </section>
 
-        <div className="mt-10 max-w-3xl space-y-6 text-ink-soft [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-950 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_a]:underline">
+      <section className="py-16">
+        <Container>
+        <div className="max-w-3xl space-y-6 text-ink-soft [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-950 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_a]:underline">
           <p className="text-sm text-ink-faint">Posledná aktualizácia: november 2026</p>
 
           <p>
@@ -132,7 +137,8 @@ export default function PrivacyPage() {
             <li>Telefón: +421 944 267 418</li>
           </ul>
         </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }

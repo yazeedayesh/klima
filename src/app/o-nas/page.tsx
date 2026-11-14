@@ -33,7 +33,7 @@ const values = [
 export default function ONasPage() {
   return (
     <>
-      <section className="py-16">
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
         <Container>
           <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "O nás", href: "/o-nas" }]} />
         </Container>

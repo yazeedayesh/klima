@@ -15,17 +15,22 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <section className="py-20">
-      <Container>
-        <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "Kontakt", href: "/kontakt" }]} />
-        <SectionHead
-          as="h1"
-          eyebrow="Kontakt"
-          title="Kontakt a cenová ponuka"
-          text="Napíšte, čo riešite, alebo rovno zavolajte. Ozveme sa a dohodneme obhliadku."
-        />
+    <>
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
+        <Container>
+          <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "Kontakt", href: "/kontakt" }]} />
+          <SectionHead
+            as="h1"
+            eyebrow="Kontakt"
+            title="Kontakt a cenová ponuka"
+            text="Napíšte, čo riešite, alebo rovno zavolajte. Ozveme sa a dohodneme obhliadku."
+          />
+        </Container>
+      </section>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+      <section className="py-16">
+        <Container>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-6 rounded-2xl border border-line bg-gray-50 p-8">
             <h2 className="text-xl font-bold text-navy-950">Kontaktné údaje</h2>
             <ContactInfoRow label="Zavolajte nám" value={site.phoneDisplay} href={`tel:${site.phone}`} />
@@ -37,8 +42,9 @@ export default function KontaktPage() {
             <ContactForm />
           </Suspense>
         </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }
 

@@ -38,7 +38,7 @@ const groups = ["Klimatizácie", "Tepelné čerpadlá", "Servis"] as const;
 export default function CennikPage() {
   return (
     <>
-      <section className="py-16">
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
         <Container>
           <Breadcrumbs
             items={[
@@ -60,9 +60,13 @@ export default function CennikPage() {
               Zavolať {site.phoneDisplay}
             </Button>
           </div>
+        </Container>
+      </section>
 
-          {hasPrices && (
-            <div className="mt-14 space-y-10">
+      {hasPrices && (
+        <section className="py-16">
+          <Container>
+            <div className="space-y-10">
               {groups.map((group) => {
                 const items = priceItems.filter((p) => p.group === group);
                 if (items.length === 0) return null;
@@ -88,9 +92,9 @@ export default function CennikPage() {
               })}
               <p className="text-xs text-ink-faint">Ceny sú orientačné, s DPH. Konečnú cenu potvrdíme v ponuke.</p>
             </div>
-          )}
-        </Container>
-      </section>
+          </Container>
+        </section>
+      )}
 
       <section className="pb-20">
         <Container>

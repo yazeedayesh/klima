@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function OblastiPage() {
   return (
     <>
-      <section className="py-16">
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
         <Container>
           <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "Pôsobnosť", href: "/oblasti" }]} />
           <SectionHead

@@ -47,7 +47,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="py-16">
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
         <Container>
           <Breadcrumbs
             items={[
@@ -71,9 +71,13 @@ export default async function ServicePage({ params }: Props) {
               </Button>
             </div>
           </div>
+        </Container>
+      </section>
 
+      <section className="py-16">
+        <Container>
           {service.body && service.body.length > 0 && (
-            <div className="mt-10 max-w-2xl space-y-4 text-ink-soft">
+            <div className="max-w-2xl space-y-4 text-ink-soft">
               {service.body.map((paragraph, i) => (
                 <p key={i} className="m-0">
                   {paragraph}

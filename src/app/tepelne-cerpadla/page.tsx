@@ -74,7 +74,7 @@ export default function TepelneCerpadlaPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="py-16">
+      <section className="border-b border-line bg-wash py-10 lg:py-14">
         <Container>
           <Breadcrumbs
             items={[
