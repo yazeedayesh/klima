@@ -85,35 +85,33 @@ export default function HomePage() {
             </aside>
 
             <div className="overflow-hidden rounded-2xl border border-line bg-white">
-              <div className="relative">
-                <div className="relative aspect-[4/3] sm:aspect-[16/8]">
-                  <Image
-                    src="/hero.webp"
-                    alt="Nástenná klimatizácia v svetlej obývacej izbe"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 60vw, 100vw"
-                    className="object-cover object-[72%_35%]"
-                  />
-                </div>
-                <div className="p-5 sm:absolute sm:left-6 sm:top-6 sm:max-w-sm sm:rounded-xl sm:bg-white/95 sm:p-5 sm:shadow-lg sm:backdrop-blur-sm">
-                  <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
-                    Košice · po celom Slovensku
-                  </p>
-                  <h1 className="rise mb-0 mt-2 text-2xl leading-[1.1] sm:text-3xl" style={{ "--i": 1 } as React.CSSProperties}>
-                    Klimatizácie a tepelné čerpadlá na kľúč
-                  </h1>
-                  <p className="rise mb-0 mt-2 text-sm text-ink-soft" style={{ "--i": 2 } as React.CSSProperties}>
-                    Cenu poznáte ešte pred začatím prác.
-                  </p>
-                  <div className="rise mt-4 flex flex-wrap gap-2.5" style={{ "--i": 3 } as React.CSSProperties}>
-                    <Button href="/kontakt" variant="accent" className="px-5 py-2.5 text-sm">
-                      Vypýtať cenu
-                    </Button>
-                    <Button href={`tel:${site.phone}`} variant="ghost" className="num px-5 py-2.5 text-sm">
-                      Zavolať
-                    </Button>
-                  </div>
+              <div className="relative aspect-[4/3] sm:aspect-[16/9]">
+                <Image
+                  src="/hero.webp"
+                  alt="Nástenná klimatizácia v svetlej obývacej izbe"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-cover object-[72%_35%]"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <p className="rise m-0 text-[0.85rem] font-semibold text-accent-strong">
+                  Košice · po celom Slovensku
+                </p>
+                <h1 className="rise mb-0 mt-2 text-2xl leading-[1.1] sm:text-3xl" style={{ "--i": 1 } as React.CSSProperties}>
+                  Klimatizácie a tepelné čerpadlá na kľúč
+                </h1>
+                <p className="rise mb-0 mt-2 text-sm text-ink-soft" style={{ "--i": 2 } as React.CSSProperties}>
+                  Cenu poznáte ešte pred začatím prác.
+                </p>
+                <div className="rise mt-4 flex flex-wrap gap-2.5" style={{ "--i": 3 } as React.CSSProperties}>
+                  <Button href="/kontakt" variant="accent" className="px-5 py-2.5 text-sm">
+                    Vypýtať cenu
+                  </Button>
+                  <Button href={`tel:${site.phone}`} variant="ghost" className="num px-5 py-2.5 text-sm">
+                    Zavolať
+                  </Button>
                 </div>
               </div>
             </div>
