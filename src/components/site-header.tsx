@@ -3,18 +3,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { mainNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
-import { basePath } from "@/lib/base-path";
 import { LogoWord } from "@/components/logo-word";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
   const router = useRouter();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = "hidden";
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") closeMenu();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  function closeMenu() {
+    setOpen(false);
+    menuButtonRef.current?.focus();
+  }
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,7 +61,7 @@ export function SiteHeader() {
 
       <Container className="flex h-20 items-center gap-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={40} height={40} priority />
+          <Image src="/mark.svg" alt="Klimaro" width={40} height={40} priority />
           <span className="font-display text-lg font-bold text-navy-950">
             <LogoWord />
           </span>
@@ -110,8 +130,10 @@ export function SiteHeader() {
         </div>
 
         <button
+          ref={menuButtonRef}
           type="button"
           aria-label="Otvoriť menu"
+          aria-expanded={open}
           onClick={() => setOpen(true)}
           className="ml-auto grid h-10 w-10 place-items-center rounded-lg border border-line text-navy-900 lg:hidden"
         >
@@ -122,15 +144,21 @@ export function SiteHeader() {
       </Container>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-navy-950 px-6 py-6 text-white lg:hidden">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobilné menu"
+          className="fixed inset-0 z-50 flex h-dvh flex-col overflow-y-auto bg-navy-950 px-6 py-6 text-white lg:hidden"
+        >
           <div className="flex items-center justify-between">
             <span className="font-display text-xl font-bold">
               <LogoWord />
             </span>
             <button
+              ref={closeButtonRef}
               type="button"
               aria-label="Zavrieť menu"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="grid h-10 w-10 place-items-center rounded-lg border border-white/25"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
@@ -145,7 +173,7 @@ export function SiteHeader() {
               <Link
                 key={cat.slug}
                 href={`/produkty?kategoria=${cat.slug}`}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
                 className="rounded-lg bg-white/5 px-4 py-3 text-sm font-medium"
               >
                 {cat.name}
@@ -159,7 +187,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
                 className="font-display text-xl font-bold px-1 py-2.5"
               >
                 {item.label}

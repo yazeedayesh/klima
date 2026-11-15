@@ -9,7 +9,6 @@ import { ContactForm } from "@/components/contact-form";
 import { ProductCard } from "@/components/product-card";
 import { site } from "@/lib/site";
 import { categories, getProductsByCategory } from "@/lib/products-data";
-import { basePath } from "@/lib/base-path";
 
 // Drop a real photo at public/hero.(webp|jpg|jpeg|png) and it's used automatically —
 // falls back to the placeholder illustration until then.
@@ -90,7 +89,7 @@ export default function HomePage() {
             <div className="relative overflow-hidden rounded-2xl border border-line bg-white">
               <div className="relative aspect-[4/3] w-full sm:aspect-[16/11]">
                 <Image
-                  src={`${basePath}/${heroImage}`}
+                  src={`/${heroImage}`}
                   alt="Klimatizácia Klimaro nainštalovaná v modernom obývacom priestore"
                   fill
                   priority

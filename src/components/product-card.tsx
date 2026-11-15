@@ -1,7 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoryBySlug, type Product } from "@/lib/products-data";
-import { basePath } from "@/lib/base-path";
+
+// Kým nie sú skutočné fotky od klienta, aspoň odlíšime kategórie —
+// nie jeden a ten istý obrázok pre každý produkt.
+const categoryImages: Record<string, string> = {
+  "nastenne-klimatizacie": "/category-nastenne.svg",
+  "bezprievanove-klimatizacie": "/category-bezprievanove.svg",
+  "dizajnove-klimatizacie": "/category-dizajnove.svg",
+  "tepelne-cerpadla": "/category-tepelne-cerpadla.svg",
+};
+
+function categoryImage(category: string) {
+  return categoryImages[category] ?? "/product-placeholder.svg";
+}
 
 export function ProductCard({ product }: { product: Product }) {
   const category = getCategoryBySlug(product.category);
@@ -20,8 +32,8 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
         <Image
-          src={`${basePath}/product-placeholder.svg`}
-          alt={`${product.name} – ilustračný obrázok`}
+          src={categoryImage(product.category)}
+          alt={`${category?.name ?? product.name} – ilustračná kategória (nie skutočná fotka produktu)`}
           width={320}
           height={220}
           className="w-full"

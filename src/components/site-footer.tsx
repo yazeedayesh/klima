@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, site } from "@/lib/site";
 import { categories } from "@/lib/products-data";
-import { basePath } from "@/lib/base-path";
 import { LogoWord } from "@/components/logo-word";
 
 export function SiteFooter() {
@@ -12,7 +11,7 @@ export function SiteFooter() {
       <Container className="grid gap-10 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
-            <Image src={`${basePath}/mark.svg`} alt="Klimaro" width={36} height={36} />
+            <Image src="/mark.svg" alt="Klimaro" width={36} height={36} />
             <span className="font-display text-lg font-bold text-navy-950">
               <LogoWord />
             </span>
