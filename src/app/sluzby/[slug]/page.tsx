@@ -3,15 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Breadcrumbs } from "@/components/breadcrumbs";
-import { FaqList } from "@/components/faq-list";
 import { getServiceBySlug, servicesData } from "@/lib/services-data";
-import { areas } from "@/lib/areas-data";
+import { getCategoryBySlug } from "@/lib/products-data";
 import { site } from "@/lib/site";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
-
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return servicesData.map((s) => ({ slug: s.slug }));
@@ -22,9 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: service.metaTitle,
+    title: service.title,
     description: service.description,
-    alternates: { canonical: `/klimatizacie/${service.slug}` },
+    alternates: { canonical: `/sluzby/${service.slug}` },
   };
 }
 
@@ -33,58 +30,36 @@ export default async function ServicePage({ params }: Props) {
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    serviceType: service.title,
-    description: service.description,
-    url: `${site.url}/klimatizacie/${service.slug}`,
-    provider: { "@id": `${site.url}/#business` },
-    areaServed: areas.map((a) => ({ "@type": "City", name: a.name })),
-  };
+  const category = service.categorySlug ? getCategoryBySlug(service.categorySlug) : undefined;
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="border-b border-line bg-wash py-10 lg:py-14">
+      <section className="py-16">
         <Container>
           <Breadcrumbs
             items={[
               { label: "Domov", href: "/" },
-              { label: "Klimatizácie", href: "/klimatizacie" },
-              { label: service.title, href: `/klimatizacie/${service.slug}` },
+              { label: "Služby", href: "/sluzby" },
+              { label: service.title, href: `/sluzby/${service.slug}` },
             ]}
           />
           <div className="max-w-2xl">
-            <div className="label-accent">
-              Klimatizácie
+            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+              Služby
             </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl">{service.h1}</h1>
+            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">{service.title}</h1>
             <p className="mt-4 text-ink-soft">{service.intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/kontakt" variant="accent">
                 Nezáväzná ponuka
               </Button>
-              <Button href={`tel:${site.phone}`} variant="ghost">
-                Zavolať {site.phoneDisplay}
-              </Button>
+              {category && (
+                <Button href={`/produkty?kategoria=${category.slug}`} variant="ghost">
+                  Pozrieť produkty
+                </Button>
+              )}
             </div>
           </div>
-        </Container>
-      </section>
-
-      <section className="py-16">
-        <Container>
-          {service.body && service.body.length > 0 && (
-            <div className="max-w-2xl space-y-4 text-ink-soft">
-              {service.body.map((paragraph, i) => (
-                <p key={i} className="m-0">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
 
           <div className="mt-14 grid gap-10 lg:grid-cols-2">
             <div className="rounded-2xl border border-line bg-gray-50 p-8">
@@ -101,22 +76,22 @@ export default async function ServicePage({ params }: Props) {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-8">
+            <div className="rounded-2xl border border-line bg-white p-8 shadow-md">
               <h2 className="text-xl font-bold text-navy-950">Kontaktné údaje</h2>
               <p className="mt-3 text-sm text-ink-soft">
-                Zavolajte nám priamo, alebo vyplňte krátky formulár a ozveme sa vám {site.responseTime}.
+                Zavolajte nám priamo, alebo vyplňte krátky formulár a ozveme sa vám e-mailom do 24 hodín.
               </p>
               <div className="mt-6 space-y-4">
                 <a href={`tel:${site.phone}`} className="block">
-                  <div className="text-sm text-ink-faint">Zavolajte nám</div>
+                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Zavolajte nám</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">{site.phoneDisplay}</div>
                 </a>
                 <a href={`mailto:${site.email}`} className="block">
-                  <div className="text-sm text-ink-faint">E-mail</div>
+                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">E-mail</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">{site.email}</div>
                 </a>
                 <div>
-                  <div className="text-sm text-ink-faint">Pôsobisko</div>
+                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Pôsobisko</div>
                   <div className="mt-0.5 text-[0.95rem] font-medium text-navy-950">
                     {site.areaShort}, po dohode celé Slovensko
                   </div>
@@ -130,28 +105,6 @@ export default async function ServicePage({ params }: Props) {
               </Link>
             </div>
           </div>
-
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-navy-950">Časté otázky</h2>
-            <div className="mt-6">
-              <FaqList items={service.faq} />
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <h2 className="text-xl font-bold text-navy-950">{service.title} v okolí Košíc</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {areas.map((a) => (
-                <Link
-                  key={a.slug}
-                  href={`/oblasti/${a.slug}`}
-                  className="rounded-full border border-line px-4 py-1.5 text-sm text-ink-soft hover:bg-gray-50"
-                >
-                  {a.name}
-                </Link>
-              ))}
-            </div>
-          </div>
         </Container>
       </section>
 
@@ -159,7 +112,7 @@ export default async function ServicePage({ params }: Props) {
         <Container>
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-navy-950 p-10 text-white sm:flex-row sm:items-center sm:justify-between lg:p-14">
             <div>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">Ďalšie služby</h2>
+              <h3 className="text-2xl font-bold sm:text-3xl">Ostatné služby</h3>
               <p className="mt-2 text-white/70">Pozrite si aj ďalšie oblasti, v ktorých vám vieme pomôcť.</p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -168,18 +121,12 @@ export default async function ServicePage({ params }: Props) {
                 .map((s) => (
                   <Link
                     key={s.slug}
-                    href={`/klimatizacie/${s.slug}`}
+                    href={`/sluzby/${s.slug}`}
                     className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10"
                   >
                     {s.title}
                   </Link>
                 ))}
-              <Link
-                href="/tepelne-cerpadla"
-                className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10"
-              >
-                Tepelné čerpadlá
-              </Link>
             </div>
           </div>
         </Container>

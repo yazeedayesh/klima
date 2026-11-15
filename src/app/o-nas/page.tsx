@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Breadcrumbs } from "@/components/breadcrumbs";
-import { SectionHead } from "@/components/section-head";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "O nás",
-  description: "Klimaro – montáž, predaj a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí do 100 km.",
+  description: "Klimaro – certifikovaný tím pre montáž, predaj a servis klimatizácií v Košiciach a okolí.",
   alternates: { canonical: "/o-nas" },
 };
 
@@ -18,7 +16,7 @@ const values = [
   },
   {
     title: "Odbornosť",
-    text: "Montáž robíme podľa pokynov výrobcu — tlaková skúška, vákuovanie a uvedenie do prevádzky.",
+    text: "Montáž a servis vykonávajú technici s platnou F-gas certifikáciou podľa platnej legislatívy.",
   },
   {
     title: "Spoľahlivosť",
@@ -30,22 +28,31 @@ const values = [
   },
 ];
 
+const stats = [
+  { value: "150+", label: "Nainštalovaných klimatizácií" },
+  { value: "6+", label: "Rokov skúsenosti" },
+  { value: "97 %", label: "Spokojnosť zákazníkov" },
+  { value: "48 h", label: "Priemerná reakčná doba" },
+];
+
 export default function ONasPage() {
   return (
     <>
-      <section className="border-b border-line bg-wash py-10 lg:py-14">
-        <Container>
-          <Breadcrumbs items={[{ label: "Domov", href: "/" }, { label: "O nás", href: "/o-nas" }]} />
-        </Container>
+      <section className="py-16">
         <Container className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <div>
-            <SectionHead
-              as="h1"
-              eyebrow="O nás"
-              title="Chladenie, na ktoré sa dá spoľahnúť"
-              text={`${site.name} je tím zameraný na montáž, predaj a servis klimatizácií a tepelných čerpadiel v Košiciach a okolí. Pracujeme priamo s koncovými zákazníkmi aj menšími prevádzkami — od prvej telefonickej konzultácie až po servis dlho po montáži.`}
-            />
-            <p className="mt-4 max-w-2xl text-ink-soft">
+            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+              O nás
+            </div>
+            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">
+              Chladenie, na ktoré sa dá spoľahnúť
+            </h1>
+            <p className="mt-4 text-ink-soft">
+              {site.name} je tím zameraný na montáž, predaj a servis klimatizácií a tepelných čerpadiel
+              v Košiciach a okolí. Pracujeme priamo s koncovými zákazníkmi aj menšími prevádzkami —
+              od prvej telefonickej konzultácie až po servis dlho po montáži.
+            </p>
+            <p className="mt-4 text-ink-soft">
               Naším cieľom je, aby ste presne vedeli, čo platíte a prečo — bez prekvapení a bez tlaku na
               rýchle rozhodnutie.
             </p>
@@ -53,21 +60,19 @@ export default function ONasPage() {
               <Button href="/kontakt" variant="accent">
                 Kontaktovať nás
               </Button>
-              <Button href="/klimatizacie" variant="ghost">
+              <Button href="/sluzby" variant="ghost">
                 Naše služby
               </Button>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-gray-50 p-8">
-            <h2 className="text-lg font-bold text-navy-950">Čo robíme</h2>
-            <ul className="mt-5 space-y-3 text-sm text-ink-soft">
-              <li>Predaj a montáž klimatizácií všetkých bežných značiek</li>
-              <li>Servis, čistenie a dezinfekcia klimatizácií</li>
-              <li>Návrh, montáž a servis tepelných čerpadiel vzduch-voda</li>
-              <li>{site.areaShort}, po dohode celé Slovensko</li>
-              <li>{site.yearsExperience} rokov skúseností v odbore</li>
-            </ul>
+          <div className="grid grid-cols-2 gap-6">
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-line bg-gray-50 p-6">
+                <div className="font-display text-2xl font-bold text-navy-950">{stat.value}</div>
+                <div className="mt-1 text-xs text-ink-faint">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
@@ -75,14 +80,14 @@ export default function ONasPage() {
       <section className="bg-gray-50 py-16">
         <Container>
           <div className="max-w-2xl">
-            <div className="label-accent">
+            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
               Naše hodnoty
             </div>
             <h2 className="mt-5 text-2xl font-bold text-navy-950 sm:text-3xl">Ako pracujeme</h2>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {values.map((v, i) => (
-              <div key={v.title} className="flex gap-4 rounded-2xl border border-line bg-white p-6">
+              <div key={v.title} className="flex gap-4 rounded-2xl border border-line bg-white p-6 shadow-md">
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-navy-950 text-sm font-bold text-white">
                   {i + 1}
                 </span>
@@ -100,7 +105,7 @@ export default function ONasPage() {
         <Container>
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-navy-950 p-10 text-white sm:flex-row sm:items-center sm:justify-between lg:p-14">
             <div>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">Máte otázku pred rozhodnutím?</h2>
+              <h3 className="text-2xl font-bold sm:text-3xl">Máte otázku pred rozhodnutím?</h3>
               <p className="mt-2 text-white/70">Radi vám poradíme telefonicky, bez záväzkov.</p>
             </div>
             <Button href={`tel:${site.phone}`} variant="accent" className="shrink-0">

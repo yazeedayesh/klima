@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-export const alt = `${site.name} – ${site.tagline}`;
+export const alt = `${site.name} – Montáž a predaj klimatizácií Košice`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -18,36 +18,39 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px 96px",
-          background: "#0b1826",
+          background: "#0A1830",
           color: "#FFFFFF",
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 76,
-            height: 76,
-            borderRadius: 20,
-            background: "#13283c",
-          }}
-        >
-          <svg viewBox="0 0 64 64" width="44" height="44" fill="none">
-            <rect x="9" y="17" width="46" height="19" rx="8" fill="none" stroke="#FFFFFF" strokeWidth="5" />
-            <line x1="17" y1="25.5" x2="47" y2="25.5" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-            <path d="M16 39c-1 7 4 11 11 10" fill="none" stroke="#ff9a3d" strokeWidth="5" strokeLinecap="round" />
-          </svg>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 76,
+              height: 76,
+              borderRadius: 20,
+              background: "#111f38",
+              fontSize: 44,
+              fontWeight: 800,
+            }}
+          >
+            K
+          </div>
+          <div style={{ display: "flex", width: 14, height: 14, borderRadius: 999, background: "#F5821F" }} />
         </div>
 
         <div style={{ display: "flex", fontSize: 88, fontWeight: 800, marginTop: 48, letterSpacing: -2 }}>
           {site.name}
         </div>
-        <div style={{ display: "flex", fontSize: 34, color: "#AFC0D9", marginTop: 18 }}>{site.tagline}</div>
+        <div style={{ display: "flex", fontSize: 34, color: "#AFC0D9", marginTop: 18 }}>
+          Montáž a predaj klimatizácií · Košice a okolie
+        </div>
 
         <div style={{ display: "flex", gap: 16, marginTop: 56 }}>
-          {["Klimatizácie", "Tepelné čerpadlá", "Cenník", site.phoneDisplay].map((label) => (
+          {["Predaj", "Montáž", "Servis", "Tepelné čerpadlá"].map((label) => (
             <div
               key={label}
               style={{

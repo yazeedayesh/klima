@@ -5,8 +5,6 @@ export const metadata: Metadata = {
   title: "Blog",
   description: "Rady a návody o klimatizáciách, tepelných čerpadlách a chladení domácnosti či firmy.",
   alternates: { canonical: "/blog" },
-  // Kým tu nie sú články, stránku neindexujeme.
-  robots: { index: false, follow: true },
 };
 
 export default function BlogPage() {

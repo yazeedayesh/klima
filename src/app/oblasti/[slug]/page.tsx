@@ -3,15 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { ContactForm } from "@/components/contact-form";
 import { areas, getAreaBySlug } from "@/lib/areas-data";
-import { acServicesNav, heatPumpNav, site } from "@/lib/site";
+import { servicesData } from "@/lib/services-data";
+import { site } from "@/lib/site";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { SectionHead } from "@/components/section-head";
 
 type Props = { params: Promise<{ slug: string }> };
-
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return areas.map((a) => ({ slug: a.slug }));
@@ -22,10 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const area = getAreaBySlug(slug);
   if (!area) return {};
   return {
-    title: `Klimatizácie a tepelné čerpadlá ${area.name}`,
-    description: `Montáž, predaj a servis klimatizácií a tepelných čerpadiel – ${area.name}${
-      area.distanceKm === 0 ? "" : ` (${area.distanceKm} km od Košíc)`
-    }. Cena vopred, obhliadka po dohode. ${site.name}.`,
+    title: `Klimatizácie ${area.name}`,
+    description: `Montáž, predaj a servis klimatizácií v lokalite ${area.name} — ${site.name}, ${
+      area.distanceKm === 0 ? "sídlo spoločnosti" : `${area.distanceKm} km od Košíc`
+    }.`,
     alternates: { canonical: `/oblasti/${area.slug}` },
   };
 }
@@ -38,8 +35,8 @@ export default async function AreaPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Montáž a servis klimatizácií a tepelných čerpadiel",
-    provider: { "@id": `${site.url}/#business` },
+    serviceType: "Montáž a servis klimatizácií",
+    provider: { "@type": "HVACBusiness", name: site.name, telephone: site.phone },
     areaServed: { "@type": "City", name: area.name },
   };
 
@@ -47,7 +44,7 @@ export default async function AreaPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="border-b border-line bg-wash py-10 lg:py-14">
+      <section className="py-16">
         <Container>
           <Breadcrumbs
             items={[
@@ -56,47 +53,36 @@ export default async function AreaPage({ params }: Props) {
               { label: area.name, href: `/oblasti/${area.slug}` },
             ]}
           />
-          <SectionHead
-            as="h1"
-            eyebrow="Pôsobnosť"
-            title={`Klimatizácie a tepelné čerpadlá ${area.name}`}
-            text={area.intro}
-          />
-          <p className="mt-3 max-w-2xl text-sm text-ink-faint">{area.note}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/kontakt" variant="accent">
-              Nezáväzná ponuka
-            </Button>
-            <Button href={`tel:${site.phone}`} variant="ghost">
-              Zavolať {site.phoneDisplay}
-            </Button>
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
+              Pôsobnosť
+            </div>
+            <h1 className="mt-5 text-3xl font-bold text-navy-950 sm:text-4xl">Klimatizácie {area.name}</h1>
+            <p className="mt-4 text-ink-soft">{area.intro}</p>
+            <p className="mt-3 text-sm text-ink-faint">{area.note}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/kontakt" variant="accent">
+                Nezáväzná ponuka
+              </Button>
+              <Button href={`tel:${site.phone}`} variant="ghost">
+                Zavolať {site.phoneDisplay}
+              </Button>
+            </div>
           </div>
 
           <div className="mt-14">
-            <h2 className="text-xl font-bold text-ink">Čo v lokalite {area.name} zabezpečíme</h2>
-            <ul className="mt-5 border-b border-ink/15">
-              {[...acServicesNav, ...heatPumpNav].map((service) => (
-                <li key={service.href}>
-                  <Link href={service.href} className="row-link">
-                    <span className="text-[0.95rem] font-medium text-ink">{service.label}</span>
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                      className="chev text-accent"
-                    >
-                      <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg>
-                  </Link>
-                </li>
+            <h2 className="text-xl font-bold text-navy-950">Čo v lokalite {area.name} zabezpečíme</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {servicesData.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/sluzby/${service.slug}`}
+                  className="rounded-xl border border-line bg-gray-50 px-5 py-4 text-sm font-medium text-navy-950 hover:bg-white hover:shadow-md"
+                >
+                  {service.title}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           <div className="mt-14">
@@ -114,29 +100,6 @@ export default async function AreaPage({ params }: Props) {
                   </Link>
                 ))}
             </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-16">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <h2 className="m-0 text-2xl font-bold text-ink sm:text-3xl">
-                Dopyt pre {area.name}
-              </h2>
-              <p className="mt-3 max-w-md text-ink-soft">
-                {area.core
-                  ? `Napíšte, čo riešite — ozveme sa ${site.responseTime} a dohodneme obhliadku.`
-                  : "Napíšte parametre priestoru a požadovaný termín — pripravíme ponuku a naplánujeme cestu."}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a href={`tel:${site.phone}`} className="num text-lg font-semibold text-ink hover:underline">
-                  {site.phoneDisplay}
-                </a>
-              </div>
-            </div>
-            <ContactForm />
           </div>
         </Container>
       </section>

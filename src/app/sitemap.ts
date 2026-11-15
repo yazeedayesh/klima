@@ -2,31 +2,37 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { servicesData } from "@/lib/services-data";
 import { areas } from "@/lib/areas-data";
-import { hasPrices } from "@/lib/pricing-data";
 
 export const dynamic = "force-static";
 
-// /blog a /cennik pridávame až keď majú obsah (dovtedy sú noindex).
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const page = (path: string, priority: number): MetadataRoute.Sitemap[number] => ({
-    url: `${site.url}${path}`,
-    lastModified: now,
-    priority,
-  });
 
-  return [
-    page("", 1),
-    page("/klimatizacie", 0.9),
-    ...servicesData.map((s) => page(`/klimatizacie/${s.slug}`, 0.8)),
-    page("/tepelne-cerpadla", 0.9),
-    page("/tepelne-cerpadla/dotacia", 0.8),
-    page("/tepelne-cerpadla/servis", 0.8),
-    ...(hasPrices ? [page("/cennik", 0.7)] : []),
-    page("/oblasti", 0.7),
-    ...areas.map((a) => page(`/oblasti/${a.slug}`, 0.7)),
-    page("/o-nas", 0.5),
-    page("/kontakt", 0.6),
-    page("/ochrana-osobnych-udajov", 0.2),
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: site.url, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${site.url}/produkty`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${site.url}/sluzby`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/cenik`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/oblasti`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/o-nas`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${site.url}/kontakt`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${site.url}/ochrana-osobnych-udajov`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
+
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((s) => ({
+    url: `${site.url}/sluzby/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  const areaRoutes: MetadataRoute.Sitemap = areas.map((a) => ({
+    url: `${site.url}/oblasti/${a.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...areaRoutes];
 }

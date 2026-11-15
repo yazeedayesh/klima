@@ -2,15 +2,20 @@ export function LogoWord({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-[0.12em] ${className}`}>
       Klimaro
-      <svg viewBox="0 0 64 64" aria-hidden="true" className="inline-block h-[0.62em] w-[1.05em]">
+      <svg
+        viewBox="0 0 140 90"
+        aria-hidden="true"
+        className="inline-block h-[0.62em] w-[1.05em]"
+      >
         {/* indoor AC unit body */}
-        <rect x="9" y="17" width="46" height="19" rx="8" fill="none" stroke="currentColor" strokeWidth="5" />
+        <rect x="6" y="12" width="128" height="66" rx="12" fill="none" stroke="currentColor" strokeWidth="12" />
         {/* vent slats */}
-        <line x1="17" y1="25.5" x2="47" y2="25.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-        <line x1="17" y1="30.5" x2="41" y2="30.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.35" />
-        {/* cool airflow */}
-        <path d="M16 39c-1 7 4 11 11 10" fill="none" stroke="#ff9a3d" strokeWidth="5" strokeLinecap="round" />
-        <path d="M33 39c-1 5.5 2.5 8.5 8 8" fill="none" stroke="#ff9a3d" strokeWidth="4" strokeLinecap="round" opacity="0.6" />
+        <line x1="26" y1="40" x2="112" y2="40" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
+        <line x1="26" y1="58" x2="92" y2="58" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.45" />
+        {/* glow behind the lit status light */}
+        <circle cx="112" cy="28" r="15" fill="#F5821F" opacity="0.28" />
+        {/* lit status light */}
+        <circle cx="112" cy="28" r="8" fill="#F5821F" />
       </svg>
     </span>
   );
