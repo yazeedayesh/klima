@@ -2,10 +2,10 @@ export const site = {
   name: "Klimaro",
   tagline: "Klimatizácie Košice",
   url: "https://www.klimaro.sk",
-  phone: "+421944267418",
-  phoneDisplay: "+421 944 267 418",
+  phone: "+421950549007",
+  phoneDisplay: "+421 950 549 007",
   email: "info@klimaro.sk",
-  whatsapp: "https://wa.me/421944267418",
+  whatsapp: "https://wa.me/421950549007",
   address: {
     locality: "Košice",
     country: "SK",
