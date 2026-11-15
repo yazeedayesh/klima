@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/oblasti`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/o-nas`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${site.url}/kontakt`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${site.url}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    // /blog je noindex kým nemá reálne články — zámerne tu nie je.
     { url: `${site.url}/ochrana-osobnych-udajov`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 

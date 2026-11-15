@@ -36,7 +36,7 @@ export default async function AreaPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Montáž a servis klimatizácií",
-    provider: { "@type": "HVACBusiness", name: site.name, telephone: site.phone },
+    provider: { "@id": `${site.url}/#business` },
     areaServed: { "@type": "City", name: area.name },
   };
 

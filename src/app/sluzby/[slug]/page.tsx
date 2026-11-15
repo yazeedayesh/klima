@@ -32,8 +32,22 @@ export default async function ServicePage({ params }: Props) {
 
   const category = service.categorySlug ? getCategoryBySlug(service.categorySlug) : undefined;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    serviceType: service.title,
+    provider: { "@id": `${site.url}/#business` },
+    areaServed: [
+      { "@type": "City", name: "Košice" },
+      { "@type": "AdministrativeArea", name: "Slovensko" },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="py-16">
         <Container>
           <Breadcrumbs

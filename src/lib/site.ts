@@ -1,7 +1,10 @@
 export const site = {
   name: "Klimaro",
   tagline: "Klimatizácie Košice",
-  url: "https://www.klimaro.sk",
+  // TODO(klient): zmeniť na https://www.klimaro.sk hneď ako je doména reálne nasmerovaná (DNS).
+  // Kým doména nefunguje, canonical/schema/sitemap musia ukazovať na skutočne dostupnú adresu,
+  // inak ich Google ignoruje a stránka sa nedá indexovať.
+  url: "https://montex-klima-site-phi.vercel.app",
   phone: "+421944267418",
   phoneDisplay: "+421 944 267 418",
   email: "info@klimaro.sk",

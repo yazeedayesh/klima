@@ -52,9 +52,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HVACBusiness",
+    "@id": `${site.url}/#business`,
     name: site.name,
     url: site.url,
     telephone: site.phone,
+    email: site.email,
+    image: `${site.url}/hero-ac.svg`,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",

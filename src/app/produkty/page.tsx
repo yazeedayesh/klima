@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { ProductCard } from "@/components/product-card";
 import { ProductFilter } from "@/components/product-filter";
 import { categories, products } from "@/lib/products-data";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Produkty",
@@ -14,8 +15,32 @@ export const metadata: Metadata = {
 };
 
 export default function ProduktyPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        url: `${site.url}/produkty`,
+        brand: { "@type": "Brand", name: site.name },
+        offers: {
+          "@type": "Offer",
+          price: p.priceFrom,
+          priceCurrency: "EUR",
+          availability: "https://schema.org/InStock",
+          url: `${site.url}/produkty`,
+          seller: { "@id": `${site.url}/#business` },
+        },
+      },
+    })),
+  };
+
   return (
     <section className="py-14">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Container>
         <div className="max-w-2xl">
           <div className="inline-flex items-center rounded-md bg-orange-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-orange-700">
