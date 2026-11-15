@@ -29,10 +29,10 @@ const values = [
 ];
 
 const stats = [
-  { value: "150+", label: "Nainštalovaných klimatizácií" },
-  { value: "6+", label: "Rokov skúsenosti" },
-  { value: "97 %", label: "Spokojnosť zákazníkov" },
-  { value: "48 h", label: "Priemerná reakčná doba" },
+  { value: "Všetky značky", label: "Nie sme viazaní na jedného výrobcu" },
+  { value: "Cena vopred", label: "Žiadne prekvapenia na faktúre" },
+  { value: "F-gas certifikát", label: "Odborná montáž a servis" },
+  { value: "Záruka", label: "Na montáž aj na zariadenie" },
 ];
 
 export default function ONasPage() {

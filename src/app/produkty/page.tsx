@@ -25,7 +25,8 @@ export default function ProduktyPage() {
         "@type": "Product",
         name: p.name,
         url: `${site.url}/produkty`,
-        brand: { "@type": "Brand", name: site.name },
+        brand: { "@type": "Brand", name: p.brand },
+        model: p.model,
         offers: {
           "@type": "Offer",
           price: p.priceFrom,

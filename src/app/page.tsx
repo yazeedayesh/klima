@@ -245,10 +245,10 @@ export default function HomePage() {
           </div>
           <div className="rounded-2xl bg-gray-50 p-10">
             <div className="grid grid-cols-2 gap-6">
-              <Stat value="150+" label="Nainštalovaných klimatizácií" />
-              <Stat value="6+" label="Rokov skúsenosti" />
-              <Stat value="97 %" label="Spokojnosť zákazníkov" />
-              <Stat value="48 h" label="Priemerná reakčná doba" />
+              <Stat value="Všetky značky" label="Nie sme viazaní na jedného výrobcu" />
+              <Stat value="Cena vopred" label="Žiadne prekvapenia na faktúre" />
+              <Stat value="F-gas certifikát" label="Odborná montáž a servis" />
+              <Stat value="Záruka" label="Na montáž aj na zariadenie" />
             </div>
           </div>
         </Container>
